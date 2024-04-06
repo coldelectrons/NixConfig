@@ -1,14 +1,20 @@
 [![built with nix](https://img.shields.io/static/v1?logo=nixos&logoColor=white&label=&message=Built%20with%20Nix&color=41439a)](https://builtwithnix.org)
-[![hydra status](https://img.shields.io/endpoint?url=https://hydra.m7.rs/job/nix-config/main/nixos.atlas/shield)](https://hydra.m7.rs/jobset/nix-config/main#tabs-jobs)
 
 # My NixOS configurations
 
 Here's my NixOS/home-manager config files. Requires [Nix flakes](https://nixos.wiki/wiki/Flakes).
 
-Looking for something simpler to start out with flakes? Try [my starter config repo](https://github.com/Misterio77/nix-starter-config).
+Looking for something simpler to start out with flakes? Try [this guy's config repo](https://github.com/Misterio77/nix-starter-config).
 
-**Highlights**:
+## Table of Contents
+- [Highlights](#highlights)
+- [References](#references)
+- [Structure](#structure)
+- [About the installation](#about-the-installation)
+- [How to bootstrap](#how-to-bootstrap)
+- [Secrets](#secrets)
 
+## Highlights
 - Multiple **NixOS configurations**, including **desktop**, **laptop**, **server**
 - **Opt-in persistence** through impermanence + blank snapshotting
 - **Encrypted** single **BTRFS** partition
@@ -20,26 +26,33 @@ Looking for something simpler to start out with flakes? Try [my starter config r
 - **Declarative** **themes** and **wallpapers** with **nix-colors**
 - **Hydra CI/CD server and binary cache** that uses the **desktops as remote builders**
 
+## References
+- [NovaViper's nix-config](https://github.com/NovaViper/nixconfig) - Makes up a large majority of the entire config, primary template used when making the config
+- [Mistero77's nix-config](https://github.com/Misterio77/nix-config)
+- [Hlissner's dotfiles](https://github.com/hlissner/dotfiles) - Security hardening configs
+- [Baitinq's nixos-config](https://github.com/Baitinq/nixos-config) - Partitioning scripts
+- [Theopn's](https://github.com/theopn/dotfiles/tree/main) and (yutkat's dotfiles)[https://github.com/yutkat/dotfiles/tree/main] - Wezterm settings
+- [Getchoo's flake](https://github.com/getchoo/flake) - Nvidia settings
+
 ## Structure
 
 - `flake.nix`: Entrypoint for hosts and home configurations. Also exposes a
   devshell for boostrapping (`nix develop` or `nix-shell`).
 - `lib`: A few lib functions for making my flake cleaner
-- `hosts`: NixOS Configurations, accessible via `nixos-rebuild --flake`.
+- `hosts`: NixOS Configurations, accessible via `nixos-rebuild --flake .#hostname`.
   - `common`: Shared configurations consumed by the machine-specific ones.
     - `global`: Configurations that are globally applied to all my machines.
-    - `optional`: Opt-in configurations my machines can use.
-  - `atlas`: Desktop PC - 32GB RAM, R5 3600x, RX 5700XT | Hyprland
-  - `pleione`: Lenovo Ideapad 3 - 8GB RAM, R7 5700u | Hyprland
-  - `maia`: Secondary Desktop PC - 16GB RAM, i5 6600, GTX 970 | Server
-  - `merope`: Raspberry Pi 4 - 8GB RAM | Server
-  - `celaeno`: Oracle Could VPS (Ampere) - 24GB RAM & 4vCPUs | Server
-  - `alcyone`: Vultr VPS - 1GB RAM & 1 vCPU | Server
-- `home`: My Home-manager configuration, acessible via `home-manager --flake`
+    - `optional`: Opt-in configurations/feature flags, my machines can use.
+    - `users`: Configurations for each system on the machines
+  - `hades`: Primary PC - 128GB RAM, Ryzen 5900X, Radeon RX 7900 XT | KDE Plasma 6
+  - `stickers`: HP laptop - 12GB RAM, Intel i5 1335U | Prime Nvidia 940M + Intel i915 | KDE Plasma 6
+  - `heavy`: Custom - 64GB ECC RAM, Ryzen 5 7600 APU | headless
+  - `live-image`: ISO configuration | Nvidia drivers included | KDE Plasma 6
+- `home`: My Home-manager configuration, accessible via `home-manager --flake .#user@hostname`
     - Each directory here is a "feature" each hm configuration can toggle, thus
       customizing my setup for each machine (be it a server, desktop, laptop,
       anything really).
-- `modules`: A few actual modules (with options) I haven't upstreamed yet.
+- `modules`: A few actual modules (with options)
 - `overlay`: Patches and version overrides for some packages. Accessible via
   `nix build`.
 - `pkgs`: My custom packages. Also accessible via `nix build`. You can compose
@@ -71,9 +84,9 @@ If you already have nix 2.4+, git, and have already enabled `flakes` and
 nix develop
 ```
 
-`nixos-rebuild --flake .` To build system configurations
+`nixos-rebuild --flake .#host` To build system configurations
 
-`home-manager --flake .` To build user configurations
+`home-manager --flake .#user@host` To build user configurations
 
 `nix build` (or shell or run) To build and use packages
 
@@ -90,53 +103,4 @@ relevant systems's SSH host keys.
 On my desktop and laptop, I use `pass` for managing passwords, which are
 encrypted using (you bet) my PGP key. This same key is also used for mail
 signing, as well as for SSH'ing around.
-
-## Tooling and applications I use
-
-Most relevant user apps daily drivers:
-
-- hyprland + swayidle + swaylock
-- waybar
-- neovim
-- fish + starship
-- kitty
-- qutebrowser
-- neomutt + mbsync
-- khal + khard + todoman + vdirsyncer
-- gpg + pass
-- tailscale
-- podman
-- zathura
-- wofi
-- bat + fd + rg
-- kdeconnect
-- sublime-music
-
-Some of the services I host:
-
-- hydra
-- navidrome
-- deluge
-- prometheus
-- websites (such as https://m7.rs)
-- minecraft
-- headscale
-
-Nixy stuff:
-
-- nix-colors
-- sops-nix
-- impermanence
-- home-manager
-- deploy-rs
-- and NixOS and nix itself, of course :)
-
-Let me know if you have any questions about them :)
-
-## Unixpornish stuff
-![fakebusy](https://i.imgur.com/PZ4L7TR.png)
-![clean](https://i.imgur.com/T5FjqbZ.jpg)
-
-That's how my hyprland desktop setup look like (as of 2022 July).
-
 
