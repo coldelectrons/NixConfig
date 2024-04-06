@@ -1,0 +1,39 @@
+keys:
+  - &primary age1u6selkqf5328c5wfm0zycwncku8jaq503eqw7p93a53w4fteyvfstp0rl7
+  # Users
+  - &users:
+    - &coldelectrons
+  # Hosts
+  - &hosts:
+    - &hades
+    - &stickers
+    - &heavy
+
+creation_rules:
+  - path_regex: hosts/hades/secrets.ya?ml$
+    key_groups:
+    - age:
+      - *hades
+      pgp:
+      - *coldelectrons
+  - path_regex: hosts/stickers/secrets.ya?ml$
+    key_groups:
+    - age:
+      - *stickers
+      pgp:
+      - *coldelectrons
+  - path_regex: hosts/heavy/secrets.ya?ml$
+    key_groups:
+    - age:
+      - *heavy
+      pgp:
+      - *coldelectrons
+
+  - path_regex: hosts/common/secrets.ya?ml$
+    key_groups:
+    - age:
+      - *hades
+      - *stickers
+      - *heavy
+      pgp:
+      - *coldelectrons

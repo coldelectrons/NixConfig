@@ -14,12 +14,12 @@
 
     # Extras
     stylix.url = "github:danth/stylix";
-    nixpkgs-howdy.url = "github:fufexan/nixpkgs/howdy";
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-gaming = {
+      # kept here for the improved Wine variants
       url = "github:fufexan/nix-gaming";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -78,13 +78,18 @@
       # Available through 'nixos-rebuild --flake .#your-hostname'
       nixosConfigurations = {
         # Main desktop
-        ryzennova = lib.nixosSystem {
-          modules = [ ./hosts/ryzennova ];
+        hades = lib.nixosSystem {
+          modules = [ ./hosts/hades ];
           specialArgs = { inherit inputs outputs; };
         };
         # Personal laptop
-        yoganova = lib.nixosSystem {
-          modules = [ ./hosts/yoganova ];
+        stickers = lib.nixosSystem {
+          modules = [ ./hosts/stickers ];
+          specialArgs = { inherit inputs outputs; };
+        };
+        # server
+        heavy = lib.nixosSystem {
+          modules = [ ./hosts/heavy ];
           specialArgs = { inherit inputs outputs; };
         };
         live-image = lib.nixosSystem {
@@ -97,14 +102,14 @@
       # Available through 'home-manager --flake .#your-username@your-hostname'
       homeConfigurations = {
         # Desktops
-        "novaviper@ryzennova" = lib.homeManagerConfiguration {
-          modules = [ ./home/novaviper/ryzennova.nix ];
+        "coldelectrons@hades" = lib.homeManagerConfiguration {
+          modules = [ ./home/coldelectrons/hades.nix ];
           pkgs = pkgsFor.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
         };
         # Laptops
-        "novaviper@yoganova" = lib.homeManagerConfiguration {
-          modules = [ ./home/novaviper/yoganova.nix ];
+        "coldelectrons@stickers" = lib.homeManagerConfiguration {
+          modules = [ ./home/coldelectrons/stickers.nix ];
           pkgs = pkgsFor.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
         };
