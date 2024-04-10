@@ -500,22 +500,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-howdy": {
-      "locked": {
-        "lastModified": 1710705896,
-        "narHash": "sha256-9P8vryADuNikcl/agW/guGaaIYzqOwlz+zqwxRphNlE=",
-        "owner": "fufexan",
-        "repo": "nixpkgs",
-        "rev": "773ae5bb82a57fae73ffd7f47c74ab32ba97678f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "fufexan",
-        "ref": "howdy",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs-lib": {
       "locked": {
         "dir": "lib",
@@ -649,7 +633,6 @@
         "krunner-nix": "krunner-nix",
         "nix-gaming": "nix-gaming",
         "nixpkgs": "nixpkgs",
-        "nixpkgs-howdy": "nixpkgs-howdy",
         "nixvim": "nixvim",
         "nur": "nur",
         "plasma-manager": "plasma-manager",

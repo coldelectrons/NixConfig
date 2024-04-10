@@ -26,8 +26,6 @@
     amdctl
   ];
   
-  boot.extraModulePackages = [ ];
-
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/615e2d96-5170-4528-ab8a-b5ccbfa7a79a";
       fsType = "ext4";

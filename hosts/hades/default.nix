@@ -5,6 +5,7 @@
     inputs.hardware.nixosModules.common-cpu-amd
     inputs.hardware.nixosModules.common-gpu-amd
     inputs.hardware.nixosModules.common-pc-ssd
+    inputs.sops-nix.nixosModules.sops
     ./hardware-configuration.nix
     # ./disks.nix
 
@@ -15,7 +16,6 @@
     ### Hardware
     # ../common/optional/rgb.nix
     ../common/optional/bluetooth.nix
-    ../common/optional/pipewire.nix
     # ../common/optional/qmk.nix
 
     ### Desktop Environment
@@ -25,7 +25,6 @@
     ../common/optional/theme.nix
     ../common/optional/quietboot.nix
     ../common/optional/libvirt.nix
-    ../common/optional/sunshine-server.nix
     ../common/optional/syncthing.nix
     ../common/optional/tailscale.nix
 
@@ -99,4 +98,7 @@
   #       cp ${configFile} /var/lib/OpenRGB/OpenRGB.json
   #     '';
   #   };
+
+  sops.defaultSopsFile = "../../../secrets/secrets.yaml";
+  sops.defaultSopsFormat = "yaml";
 }

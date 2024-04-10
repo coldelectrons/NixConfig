@@ -1,10 +1,25 @@
-# Installation
 ## About the Installation
-All of my computers use a 512MB EFI partition and a ext4 partition with a swapfile that's double the RAM of my machines
-(with the exception of my desktop, since the ram is quite large, its swapfile is equal to that of the machine).
+The people from whom I have <*ahem*> borrowed most of this configuration has particular ideas in mind.
+I, however, am a lazy slag who is too old and tired to fight with computers all day. I'll use the NixOS installer whereever possible, and only change something when the defaults are insane or stupid, or in rare instances where **I** have a particular idea in mind.
 
-Home-manager is configured in (standalone mode)[https://nix-community.github.io/home-manager/index.html#id-1.2],
-so when NixOS is rebuilt Home-manager would then also need to be rebuilt manually with `home-manager switch`.
+## The Bootstrap Process
+- Install NixOS as per normal, changing it as needed if you are doing something special.
+- Boot that system.
+- On that system, open a terminal and `git clone` your fork of this repo, and enter that folder
+- Run `nix-shell` or `nix develop` to enter environment with all necessary packages to build the config properly
+- begin editing to add your new host
+  - create a new profiles in the `hosts` subdir and/or the `home` subdir
+  - copy `/etc/nixos/hardware-configuration.nix` to that profile
+  - Make sure all the necessary keys for that host and user(s) are generated
+    - The private keys for sops in `~/.config/sops/age/keys.txt`
+    - host ssh keys
+    - user ssh keys
+  - edit `.sops.yaml`, copying from the example if needed
+    - add the needed **public** keys
+    - add the creation rules for the host and users
+  - edit the various `*/secrets.yaml` of the host and users to reflect this system
+- Once you've made all your changes *and* built them, commit them back to your fork.
+- Home-manager is configured in [standalone mode](https://nix-community.github.io/home-manager/index.html#id-1.2), so when NixOS is rebuilt Home-manager would then also need to be rebuilt manually with `home-manager switch --flake .#user@host`.
 
 ## First-time NixOS Install
 1. Download a NixOS ISO or create custom one with nix experimental features and Nvidia drivers installed by following

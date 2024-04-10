@@ -1,39 +1,22 @@
 keys:
-  - &primary age1u6selkqf5328c5wfm0zycwncku8jaq503eqw7p93a53w4fteyvfstp0rl7
-  # Users
   - &users:
-    - &coldelectrons
-  # Hosts
+    - &coldelectrons age1u6selkqf5328c5wfm0zycwncku8jaq503eqw7p93a53w4fteyvfstp0rl7
   - &hosts:
-    - &hades
-    - &stickers
-    - &heavy
+    - &stickers age1x0a8ukg2dzfvvsydgpk7s0h9tmmrasha0upve80p5u9emsh9afdq99r9ye
 
 creation_rules:
-  - path_regex: hosts/hades/secrets.ya?ml$
+  - path_regex: hosts/stickers/secrets.yaml$
     key_groups:
     - age:
-      - *hades
-      pgp:
       - *coldelectrons
-  - path_regex: hosts/stickers/secrets.ya?ml$
-    key_groups:
-    - age:
       - *stickers
-      pgp:
-      - *coldelectrons
-  - path_regex: hosts/heavy/secrets.ya?ml$
+  - path_regex: hosts/common/secrets.yaml$
     key_groups:
     - age:
-      - *heavy
-      pgp:
       - *coldelectrons
-
-  - path_regex: hosts/common/secrets.ya?ml$
-    key_groups:
-    - age:
-      - *hades
       - *stickers
-      - *heavy
-      pgp:
+  - path: secrets.yaml
+    key_groups:
+    - age:
       - *coldelectrons
+      - *stickers
