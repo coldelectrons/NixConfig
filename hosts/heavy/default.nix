@@ -99,10 +99,6 @@
   #     '';
   #   };
 
-  sops.defaultSopsFile = "../../secrets.yaml";
+  sops.defaultSopsFile = "../../../secrets/secrets.yaml";
   sops.defaultSopsFormat = "yaml";
-  sops.age.keyFile = "~/.config/sops/age/keys.txt";
-  sops.secrets."myservice.mysubdir.mysecret" = {
-    # owner = config.users.users.coldelectrons.name;
-  };
 }

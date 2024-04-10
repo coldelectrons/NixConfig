@@ -6,20 +6,22 @@
       url = "https://github.com/nixos/nixpkgs/archive/${lock.rev}.tar.gz";
       sha256 = lock.narHash;
     };
-  in
-  import nixpkgs { overlays = [ ]; }
-, ...
-}: {
-  default = pkgs.mkShell {
-    NIX_CONFIG = "extra-experimental-features = nix-command flakes repl-flake";
-    nativeBuildInputs = with pkgs; [
-      nix
-      home-manager
-      git
-      sops
-      ssh-to-age
-      gnupg
-      age
-    ];
-  };
-}
+  in import nixpkgs { overlays = [ ]; }, ... }: {
+    default = pkgs.mkShell {
+      NIX_CONFIG =
+        "extra-experimental-features = nix-command flakes repl-flake";
+      PKCS = "${pkgs.opensc}/lib/opensc-pkcs11.so";
+      nativeBuildInputs = with pkgs; [
+        nix
+        home-manager
+        deploy_rs
+        git
+        sops
+        ssh-to-age
+        age
+        gnupg
+        openssh
+        git-credential-oauth
+      ];
+    };
+  }

@@ -5,12 +5,16 @@ keys:
     - &stickers age1x0a8ukg2dzfvvsydgpk7s0h9tmmrasha0upve80p5u9emsh9afdq99r9ye
 
 creation_rules:
-  - path_regex: hosts/stickers/secrets.yaml$
+  - path: hosts/hades/secrets.yaml$
+    key_groups:
+    - age:
+      - *coldelectrons
+  - path: hosts/stickers/secrets.yaml$
     key_groups:
     - age:
       - *coldelectrons
       - *stickers
-  - path_regex: hosts/common/secrets.yaml$
+  - path: hosts/common/secrets.yaml$
     key_groups:
     - age:
       - *coldelectrons

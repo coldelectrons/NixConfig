@@ -92,6 +92,10 @@
           modules = [ ./hosts/heavy ];
           specialArgs = { inherit inputs outputs; };
         };
+        skinny = lib.nixosSystem {
+          modules = [ ./hosts/skinny ];
+          specialArgs = { inherit inputs outputs; };
+        };
         live-image = lib.nixosSystem {
           modules = [ ./hosts/live-image ];
           specialArgs = { inherit inputs outputs; };
@@ -101,15 +105,21 @@
       # Standalone home-manager configuration entrypoint
       # Available through 'home-manager --flake .#your-username@your-hostname'
       homeConfigurations = {
-        # Desktops
+        # desktops
         "coldelectrons@hades" = lib.homeManagerConfiguration {
           modules = [ ./home/coldelectrons/hades.nix ];
           pkgs = pkgsFor.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
         };
-        # Laptops
+        # laptops
         "coldelectrons@stickers" = lib.homeManagerConfiguration {
           modules = [ ./home/coldelectrons/stickers.nix ];
+          pkgs = pkgsFor.x86_64-linux;
+          extraSpecialArgs = { inherit inputs outputs; };
+        };
+        # servers
+        "coldelectrons@heavy" = lib.homeManagerConfiguration {
+          modules = [ ./home/coldelectrons/heavy.nix ];
           pkgs = pkgsFor.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
         };
