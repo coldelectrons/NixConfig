@@ -1,6 +1,11 @@
 { config, lib, pkgs, ... }:
 
 {
+  imports =
+    [
+      ./security/default.nix
+    ];
+
   boot = {
     # Make /tmp clean itself on remote. /tmp should be volatile storage!
     tmp.cleanOnBoot = true;

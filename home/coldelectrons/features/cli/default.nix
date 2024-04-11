@@ -70,7 +70,9 @@
     dnsutils
     dnstracer
     zdns
+    hw-probe
     usbutils
+    cyme
     usbview
     clinfo
     usbimage

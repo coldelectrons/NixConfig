@@ -14,7 +14,7 @@
       ./gpg.nix
       ./network.nix
       ./fonts.nix
-      #./security.nix
+      ./security.nix
     ] ++ (builtins.attrValues outputs.nixosModules);
 
   # Stylix configuration

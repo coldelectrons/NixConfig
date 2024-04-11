@@ -10,7 +10,7 @@
       xkb = {
         layout = "us";
         variant = "";
-        options = "terminate:ctrl_alt_bksp,caps:ctrl_modifier";
+        options = "terminate:ctrl_alt_bksp,caps:escaple";
       };
 
       # Enable touchpad support

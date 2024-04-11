@@ -29,7 +29,6 @@
   programs.firefox = {
     enable = true;
     nativeMessagingHosts = with pkgs; [
-      fx-cast-bridge
       kdePackages.plasma-browser-integration
     ];
     profiles.default = {

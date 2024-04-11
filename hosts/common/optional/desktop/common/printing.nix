@@ -14,5 +14,8 @@
   };
 
   # Install installation
-  environment.systemPackages = with pkgs; [ hplipWithPlugin ];
+  environment.systemPackages = with pkgs; [ 
+    hplipWithPlugin 
+    cups-filters
+  ];
 }
