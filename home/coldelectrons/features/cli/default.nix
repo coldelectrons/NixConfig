@@ -19,9 +19,7 @@
     ./nix-index.nix
     ./ssh.nix
     ./tmux.nix
-    ./topgrade.nix
     ./starship.nix
-    ./xpo.nix
     ./zsh.nix
   ];
 

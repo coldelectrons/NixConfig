@@ -54,7 +54,7 @@ with lib;
         # Append extra variables
         AUTO_NOTIFY_IGNORE+=(${
           if config.programs.atuin.enable then ''"atuin" '' else ""
-        }"yadm" "emacs" "nix-shell" "nix")
+        }"yadm" "nix-shell" "nix")
 
         setopt beep CORRECT # Enable terminal bell and autocorrect
         autoload -U colors && colors # Enable colors

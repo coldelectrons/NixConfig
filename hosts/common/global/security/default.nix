@@ -11,4 +11,4 @@
       # ./openvpn.nix
       # ./blocklist.nix
     ];
-};
+}

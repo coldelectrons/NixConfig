@@ -7,7 +7,6 @@ let
   hasExa = hasPackage "eza";
   hasSpecialisationCli = hasPackage "specialisation";
   hasNeovim = config.programs.neovim.enable;
-  hasEmacs = config.programs.emacs.enable;
   hasNeomutt = config.programs.neomutt.enable;
   hasShellColor = config.programs.shellcolor.enable;
   hasKitty = config.programs.kitty.enable;
@@ -40,7 +39,6 @@ in
       ls = mkIf hasExa "eza";
       exa = mkIf hasExa "eza";
 
-      e = mkIf hasEmacs "emacsclient -t";
 
       vrg = mkIf (hasNeomutt && hasRipgrep) "nvimrg";
       vim = mkIf hasNeovim "nvim";

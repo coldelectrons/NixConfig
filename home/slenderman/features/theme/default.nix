@@ -55,8 +55,6 @@ in {
     };
     targets = {
       kitty.variant256Colors = true;
-      # Not needed because using Doom Emacs
-      emacs.enable = false;
     };
   };
 

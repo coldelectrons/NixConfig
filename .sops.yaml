@@ -3,24 +3,46 @@ keys:
     - &coldelectrons age1u6selkqf5328c5wfm0zycwncku8jaq503eqw7p93a53w4fteyvfstp0rl7
   - &hosts:
     - &stickers age1x0a8ukg2dzfvvsydgpk7s0h9tmmrasha0upve80p5u9emsh9afdq99r9ye
-
+    - &hades age127vrzcqd0e9v2eq8nzvpkudkqfkps2xjdk43ncf3jc4xta7zp5ksm7kgnl
+    - &skinny age17jguydltthp0t6gn8vcun2m2nnazhce8ulkdvrax7cvtcuuhxycqnpryvt
 creation_rules:
-  - path: hosts/hades/secrets.yaml$
+  - path: home/coldelectrons/secrets.yaml
     key_groups:
     - age:
       - *coldelectrons
-  - path: hosts/stickers/secrets.yaml$
+  - path: hosts/hades/secrets.yaml
+    key_groups:
+    - age:
+      - *coldelectrons
+      - *hades
+  - path: hosts/stickers/secrets.yaml
     key_groups:
     - age:
       - *coldelectrons
       - *stickers
-  - path: hosts/common/secrets.yaml$
+  - path: hosts/skinny/secrets.yaml
+    key_groups:
+    - age:
+      - *coldelectrons
+      - *skinny
+      - *hades
+  - path: hosts/heavy/secrets.yaml
+    key_groups:
+    - age:
+      - *coldelectrons
+      - *heavy
+      - *hades
+  - path: hosts/common/secrets.yaml
     key_groups:
     - age:
       - *coldelectrons
       - *stickers
+      - *skinny
+      - *heavy
+      - *hades
   - path: secrets.yaml
     key_groups:
     - age:
       - *coldelectrons
+      - *hades
       - *stickers

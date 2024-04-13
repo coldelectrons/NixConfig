@@ -14,7 +14,7 @@
       nativeBuildInputs = with pkgs; [
         nix
         home-manager
-        deploy_rs
+        deploy-rs
         git
         sops
         ssh-to-age

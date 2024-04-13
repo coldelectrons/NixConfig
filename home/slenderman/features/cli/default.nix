@@ -6,7 +6,6 @@
     ./bash.nix
     ./bat.nix
     ./btop.nix
-    ./cava.nix
     ./direnv.nix
     ./eza.nix
     ./fish.nix
@@ -19,10 +18,7 @@
     ./nix-index.nix
     ./ssh.nix
     ./tmux.nix
-    ./topgrade.nix
     ./starship.nix
-    ./xpo.nix
-    ./zsh.nix
   ];
 
   #programs.command-not-found.enable = true;

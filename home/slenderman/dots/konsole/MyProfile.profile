@@ -18,7 +18,7 @@ TerminalCenter=false
 AutoCopySelectedText=true
 MiddleClickPasteMode=1
 TextEditorCmd=6
-TextEditorCmdCustom=emacsclient -a emacs --no-wait PATH +LINE:COLUMN
+TextEditorCmdCustom=lvim PATH
 UnderlineFilesEnabled=true
 
 [Keyboard]

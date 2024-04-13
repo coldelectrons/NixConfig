@@ -32,7 +32,6 @@
     overlays = builtins.attrValues outputs.overlays;
     config = {
       allowUnfree = true;
-      joypixels.acceptLicense = true;
     };
   };
 
@@ -42,7 +41,8 @@
   boot = {
     # A Fedora recommendation: https://fedoraproject.org/wiki/Changes/IncreaseVmMaxMapCount
     # Good for Windows games running through Wine or Steam
-    kernel.sysctl."vm.max_map_count" = 2147483642;
+    # kernel.sysctl."vm.max_map_count" = 1048576; # Arch default
+    kernel.sysctl."vm.max_map_count" = 2147483642; # Valve Steamdeck default
 
     # Make NixOS use the latest Linux Kernel
     kernelPackages = pkgs.linuxPackages_latest;

@@ -8,7 +8,6 @@
       inline_height = 16;
       keymap_mode = "vim-insert";
       keymap_cursor = {
-        emacs = "blink-block";
         vim_insert = "blink-bar";
         vim_normal = "steady-block";
       };

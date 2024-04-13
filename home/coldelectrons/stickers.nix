@@ -6,23 +6,24 @@
     ./features/theme
     ./features/desktop/kde/plasma6
     ./features/games
-    ./features/emacs
+    ./features/cli
+    ./features/lunarvim
     ./features/productivity
-    #./features/virt-manager
+    ./features/virt-manager
   ];
 
   ### Special Variables
   variables.useVR = false;
   variables.useKonsole = false;
-  variables.machine.gpu = "intel";
+  variables.machine.gpu = "nvidia";
   variables.desktop.displayManager = "wayland";
-  #variables.machine.motherboard = "intel";
+  variables.machine.motherboard = "intel";
   variables.machine.buildType = "laptop";
-  #variables.machine.lowSpec = true;
+  variables.machine.lowSpec = true;
   ###
 
   # Install a couple more packages
-  home.packages = with pkgs; [ keepassxc krita kdePackages.tokodon ];
+  home.packages = with pkgs; [ krita kdePackages.tokodon ];
 
   # Make the display scaling larger because Hi-DPI screen
   programs.plasma.configFile.kwinrc.Xwayland.Scale.value = 1.25;

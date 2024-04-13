@@ -20,6 +20,13 @@ in {
       # Automatically remove stale sockets
       StreamLocalBindUnlink = "yes";
     };
+    # TODO sops this to accept keys
+    # TODO set this up to reflect per-host 
+    # TODO do the same for users
+    extraConfig = ''
+      HostCertificate /etc/ssh/ssh_host_ed25519_key-cert.pub
+      TrustedUserCAKeys /etc/ssh/ca.pub
+    '';
   };
 
   programs.ssh = {

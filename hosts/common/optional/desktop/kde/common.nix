@@ -17,23 +17,22 @@ in {
   variables.desktop.environment = "kde";
 
   # Enable the KDE's SDDM.
-  services.xserver = {
-    displayManager.sddm = {
-      enable = true;
-      autoNumlock = true;
-      settings = {
-        General.background =
-          mkIf (config.stylix.image != null) "${config.stylix.image}";
-        Theme = {
-          CursorSize = config.stylix.cursor.size;
-          CursorTheme = if (config.stylix.cursor != null) then
-            config.stylix.cursor.name
-          else
-            "breeze_cursors";
-          Font = "${f.sansSerif.name},${
-              toString f.sizes.applications
-            },-1,0,50,0,0,0,0,0";
-        };
+  services.displayManager.sddm = {
+    enable = true;
+    autoNumlock = true;
+    wayland.enable = desktopW.plasma6.enable;
+    settings = {
+      General.background =
+        mkIf (config.stylix.image != null) "${config.stylix.image}";
+      Theme = {
+        CursorSize = config.stylix.cursor.size;
+        CursorTheme = if (config.stylix.cursor != null) then
+          config.stylix.cursor.name
+        else
+          "breeze_cursors";
+        Font = "${f.sansSerif.name},${
+            toString f.sizes.applications
+          },-1,0,50,0,0,0,0,0";
       };
     };
   };

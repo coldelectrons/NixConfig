@@ -11,8 +11,8 @@
         };
         removed = {
           # Force vivaldi to open xhtml+xml files
-          "application/xhtml+xml" = [ "emacsclient.desktop" "writer.desktop" ];
-          #"text/htmlh" = [ "emacsclient.desktop" "writer.desktop" ];
+          "application/xhtml+xml" = [ "lvimide.desktop" "writer.desktop" ];
+          #"text/htmlh" = [ "lvimide.desktop" "writer.desktop" ];
         };
       };
       defaultApplications = {
