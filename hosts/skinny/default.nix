@@ -11,11 +11,11 @@
 
     ### Global Configs
     ../common/global
-    ../common/users/coldelectrons
+    ../common/users/slenderman
 
     ### Hardware
     # ../common/optional/rgb.nix
-    ../common/optional/bluetooth.nix
+    # ../common/optional/bluetooth.nix
     # ../common/optional/qmk.nix
 
     ### Desktop Environment
@@ -24,19 +24,19 @@
     ### Service
     ../common/optional/theme.nix
     ../common/optional/quietboot.nix
-    ../common/optional/libvirt.nix
-    ../common/optional/syncthing.nix
+    # ../common/optional/libvirt.nix
+    # ../common/optional/syncthing.nix
     ../common/optional/tailscale.nix
 
     ### Applications
     ../common/optional/flatpak.nix
     ../common/optional/appimage.nix
     ../common/optional/localsend.nix
-    ../common/optional/gaming.nix
+    # ../common/optional/gaming.nix
     #../common/optional/sunshine-client.nix
   ];
 
-  networking.hostName = "hades"; # Define your hostname.
+  networking.hostName = "skinny"; # Define your hostname.
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
@@ -58,7 +58,7 @@
   system.stateVersion = "24.05"; # Did you read the comment?
 
   ### Special Variables
-  variables.useVR = true;
+  variables.useVR = false;
   variables.useKonsole = false;
   variables.desktop.displayManager = "wayland";
   variables.machine.motherboard = "amd";
@@ -99,6 +99,6 @@
   #     '';
   #   };
 
-  sops.defaultSopsFile = "../../../secrets/secrets.yaml";
+  sops.defaultSopsFile = "./secrets.yaml";
   sops.defaultSopsFormat = "yaml";
 }
