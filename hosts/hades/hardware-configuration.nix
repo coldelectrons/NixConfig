@@ -8,18 +8,39 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
-  boot.consoleLogLevel = 0;
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
-  boot.initrd.kernelModules = [ "amdgpu" ];
-  boot.kernelModules = [
-    # "kvm-intel"
-  ];
-  boot.extraModulePackages = with config.boot.kernelPackages; [
-    zenpower
-  ];
-  boot.kernelParams = [ 
-  ];                                                                                                                                   
+  boot = {
+    kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+    binfmt.emulatedSystems = [ "aarch64-linux" "i686-linux" ];
+    consoleLogLevel = 0;
+    # Bootloader
+    loader = {
+      grub = {
+        enable = false;
+      };
+      systemd-boot = {
+        enable = true;
+        memtest86.enable = true;
+      };
+      efi.canTouchEfiVariables = true;
+    };
+
+    initrd = {
+      availableKernelModules =
+        [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" "sr_mod" ];
+      kernelModules = [ "amdgpu" ];
+    };
+    kernelModules = [ "kvm-amd" ];
+    extraModulePackages = with config.boot.kernelPackages; [
+      zenpower
+    ];
+    kernelParams = [ 
+    ];                                                                                                                                   
+
+    # Swapfile hibernate
+    # resumeDevice = "${MAIN_PART}";
+    # kernelParams = [ "resume_offset=${RESUME_OFFSET}" "nvidia_drm.fbdev=1" ];
+  };
+
   environment.systemPackages = with pkgs; [
     linux-firmware
     zenstates
@@ -36,7 +57,7 @@
       fsType = "ext4";
     };
 
-  fileSystems."/home/thomas/.local/share/Steam" =
+  fileSystems."/home/coldelectrons/.local/share/Steam" =
     { device = "/dev/disk/by-uuid/7407920b-3535-49d5-b9ed-f73b442ec36d";
       fsType = "ext4";
     };

@@ -28,15 +28,15 @@ in {
       "git"
       "gamemode"
     ];
-    openssh.authorizedKeys.keys = [ (builtins.readFile ../../../../home/slenderman/ssh.pub) ];
-    hashedPasswordFile = config.sops.secrets.slenderman-password.path;
+    # openssh.authorizedKeys.keys = [ (builtins.readFile ../../../../home/slenderman/ssh.pub) ];
+    # hashedPasswordFile = config.sops.secrets.slenderman-password.path;
     packages = with pkgs; [ home-manager ];
   };
 
-  sops.secrets.slenderman-password = {
-    sopsFile = ../../../../secrets.yaml;
-    neededForUsers = true;
-  };
+  # sops.secrets.slenderman-password = {
+  #   sopsFile = ../../../../secrets.yaml;
+  #   neededForUsers = true;
+  # };
 
   # Import Home-Manager config for host
   home-manager.users.slenderman =

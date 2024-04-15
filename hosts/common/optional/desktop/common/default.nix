@@ -5,6 +5,7 @@
     ./pipewire.nix 
     ./printing.nix 
     ./xdg.nix
+    ./spacenav.nix
   ];
 
   # Enable networking

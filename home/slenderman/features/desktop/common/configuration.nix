@@ -160,7 +160,7 @@
 
   programs.yazi.enable = true;
 
-  fonts.fontDir.enable = true;
+  # fonts.fontDir.enable = true;
 
   xdg.portal = {
     enable = true;

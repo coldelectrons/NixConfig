@@ -28,15 +28,15 @@ in {
       "git"
       "gamemode"
     ];
-    openssh.authorizedKeys.keys = [ (builtins.readFile ../../../../home/coldelectrons/ssh.pub) ];
-    hashedPasswordFile = config.sops.secrets.coldelectrons-password.path;
+    # openssh.authorizedKeys.keys = [ (builtins.readFile ../../../../home/coldelectrons/ssh.pub) ];
+    # hashedPasswordFile = config.sops.secrets.coldelectrons-password.path;
     packages = with pkgs; [ home-manager ];
   };
 
-  sops.secrets.coldelectrons-password = {
-    sopsFile = ../../../../secrets.yaml;
-    neededForUsers = true;
-  };
+  # sops.secrets.coldelectrons-password = {
+  #   sopsFile = ../../../../secrets.yaml;
+  #   neededForUsers = true;
+  # };
 
   # Import Home-Manager config for host
   home-manager.users.coldelectrons =

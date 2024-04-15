@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   programs.browserpass.enable = true;
@@ -6,7 +6,7 @@
     enable = true;
     profiles.thomas = {
       bookmarks = { };
-      extensions = with pkgs.inputs.firefox-addons; [
+      extensions = with pkgs.nur.repos.rycee.firefox-addons; [
         ublock-origin
         blocktube
         brandon1024-find
@@ -18,7 +18,6 @@
         disable-javascript
         disconnect
         don-t-fuck-with-paste
-        dracula-dark-colorscheme
         duckduckgo-privacy-essentials
         enhancer-for-youtube
         fraidycat
@@ -54,12 +53,12 @@
     };
   };
 
-  home = {
-    persistence = {
-      # Not persisting is safer
-      # "/persist/home/thomas".directories = [ ".mozilla/firefox" ];
-    };
-  };
+  # home = {
+  #   persistence = {
+  #     # Not persisting is safer
+  #     # "/persist/home/thomas".directories = [ ".mozilla/firefox" ];
+  #   };
+  # };
 
   xdg.mimeApps.defaultApplications = {
     "text/html" = [ "firefox.desktop" ];

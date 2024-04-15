@@ -5,10 +5,10 @@
   imports = with inputs;
     [
       home-manager.nixosModules.home-manager
-      stylix.nixosModules.stylix
       ./zsh.nix
       ./locale.nix
       ./nix.nix
+      ./fish.nix
       ./filesystem.nix
       ./openssh.nix
       ./gpg.nix
@@ -16,10 +16,6 @@
       ./fonts.nix
       ./security.nix
     ] ++ (builtins.attrValues outputs.nixosModules);
-
-  # Stylix configuration
-  # For Home-Manager standalone
-  stylix.homeManagerIntegration.autoImport = false;
 
   # Add special args for home-manager
   home-manager = {
@@ -45,7 +41,7 @@
     kernel.sysctl."vm.max_map_count" = 2147483642; # Valve Steamdeck default
 
     # Make NixOS use the latest Linux Kernel
-    kernelPackages = pkgs.linuxPackages_latest;
+    # kernelPackages = pkgs.linuxPackages_latest;
 
     # Makes OBS Virtual Camera feature function
     extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
@@ -86,5 +82,6 @@
     smartmontools
     openssl
     aha
+    mc
   ];
 }

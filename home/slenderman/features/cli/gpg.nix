@@ -18,9 +18,9 @@ in {
     #enableSshSupport = true;
     # HACK Without this config file you get "No pinentry program" on 23.05. programs.gnupg.agent.pinentryFlavor doesn't appear to work, and this
     #pinentryPackage = pinentry.pkg;
-    extraConfig = ''
-      allow-loopback-pinentry
-    '';
+    # extraConfig = ''
+    #   allow-loopback-pinentry
+    # '';
   };
 
   programs.gpg = {

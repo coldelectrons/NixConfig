@@ -58,8 +58,6 @@ with lib;
            name = "DefaultThemed";
            #colorScheme = "";
            font = {
-             name = "${config.stylix.fonts.monospace.name}";
-             size = config.stylix.fonts.sizes.terminal;
            };
          };
        };

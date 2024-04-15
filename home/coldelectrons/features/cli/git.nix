@@ -4,12 +4,12 @@
   programs.git = {
     enable = true;
     package = pkgs.gitAndTools.gitFull;
-    userName = "NovaViper";
-    userEmail = "coder.nova99@mailbox.org";
-    signing = {
-      key = "DEAB6E5298F9C516";
-      signByDefault = true;
-    };
+    userName = "coldelectrons";
+    userEmail = "frithomas@gmail.com";
+    # signing = {
+    #   key = "DEAB6E5298F9C516";
+    #   signByDefault = true;
+    # };
     aliases = { graph = "log --decorate --online --graph"; };
     extraConfig = {
       init.defaultBranch = "main";

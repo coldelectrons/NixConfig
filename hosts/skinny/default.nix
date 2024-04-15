@@ -61,7 +61,7 @@
   variables.useVR = false;
   variables.useKonsole = false;
   variables.desktop.displayManager = "wayland";
-  variables.machine.motherboard = "amd";
+  # variables.machine.motherboard = "amd";
   variables.machine.buildType = "desktop";
   variables.machine.gpu = "amd";
   #variables.machine.lowSpec = false;
@@ -99,6 +99,6 @@
   #     '';
   #   };
 
-  sops.defaultSopsFile = "./secrets.yaml";
-  sops.defaultSopsFormat = "yaml";
+  # sops.defaultSopsFile = "./secrets.yaml";
+  # sops.defaultSopsFormat = "yaml";
 }

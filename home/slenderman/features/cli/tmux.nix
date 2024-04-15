@@ -1,7 +1,6 @@
 { config, lib, pkgs, ... }:
 let
   cfg = config.programs.tmux;
-  c = config.lib.stylix.colors.withHashtag;
 in {
 
   xdg.configFile = {
@@ -147,21 +146,10 @@ in {
             set -g @nova-nerdfonts-right 
             set -g @nova-rows 0
 
-            # Colors
-            set -gw window-status-current-style bold
-            set -g "@nova-status-style-bg" "${c.base02}"
-            set -g "@nova-status-style-fg" "${c.base05}"
-            set -g "@nova-status-style-active-bg" "${c.base0D}"
-            set -g "@nova-status-style-active-fg" "${c.base00}"
-
-            #set -g "@nova-pane-active-border-style" "${c.base09}"
-            #set -g "@nova-pane-border-style" "${c.base00}"
-
             # Declare Status
             #set -g @nova-segment-prefix "#{?client_prefix,Ω,ω}"
             # From https://github.com/o0th/tmux-nova/issues/33#issuecomment-1509927098
             set -g @nova-segment-action-prefix "#{?client_prefix,PREFIX,}#{?#{==:#{pane_mode},copy-mode}, COPY,}#{?#{==:#{pane_mode},view-mode}, VIEW,󰻀}"
-            set -g @nova-segment-action-prefix-colors "${c.base0F} ${c.base00}"
 
             set -g @nova-pane "#I [#W]"
 
@@ -172,20 +160,16 @@ in {
 
             # Declare system info
             set -g @nova-segment-battery "#{battery_icon_status} #{battery_percentage}"
-            set -g @nova-segment-battery-colors "${c.base0E} ${c.base00}"
             #set -g @batt_icon_status_charging '↑'
             #set -g @batt_icon_status_discharging '↓'
 
             set -g @nova-segment-cpu "CPU #{cpu_percentage}"
-            set -g @nova-segment-cpu-colors "${c.base09} ${c.base00}"
 
             set -g @nova-segment-ram "RAM #{ram_percentage}"
-            set -g @nova-segment-ram-colors "${c.base0F} ${c.base00}"
 
             set -g @nova-segment-time "#(date +'%a %m/%d ${
               if cfg.clock24 then "%H:%M" else "%I:%M %p"
             }') #(date +%Z)"
-            set -g @nova-segment-time-colors "${c.base03} ${c.base05}"
 
             set -g @nova-segments-0-left "action-prefix"
             set -g @nova-segments-0-right "battery cpu ram time"

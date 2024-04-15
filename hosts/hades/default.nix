@@ -61,17 +61,11 @@
   variables.useVR = true;
   variables.useKonsole = false;
   variables.desktop.displayManager = "wayland";
-  variables.machine.motherboard = "amd";
+  # variables.machine.motherboard = "amd";
   variables.machine.buildType = "desktop";
   variables.machine.gpu = "amd";
   #variables.machine.lowSpec = false;
   ###
-
-  boot = {
-    kernelPackages = pkgs.linuxKernel.packages.linux_zen;
-    binfmt.emulatedSystems = [ "aarch64-linux" "i686-linux" ];
-  };
-
 
   services.xserver.videoDrivers = [ "amdgpu" ];
 
@@ -99,10 +93,10 @@
   #     '';
   #   };
 
-  sops.defaultSopsFile = "../../secrets.yaml";
-  sops.defaultSopsFormat = "yaml";
-  sops.age.keyFile = "~/.config/sops/age/keys.txt";
-  sops.secrets."myservice.mysubdir.mysecret" = {
-    # owner = config.users.users.coldelectrons.name;
-  };
+  # sops.defaultSopsFile = "../../secrets.yaml";
+  # sops.defaultSopsFormat = "yaml";
+  # sops.age.keyFile = "~/.config/sops/age/keys.txt";
+  # sops.secrets."myservice.mysubdir.mysecret" = {
+  #   # owner = config.users.users.coldelectrons.name;
+  # };
 }

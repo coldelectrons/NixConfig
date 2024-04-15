@@ -20,7 +20,7 @@
 
     # Terminals
     #./alacritty.nix
-    ./wezterm.nix
+    # ./wezterm.nix
     #./rio.nix
     ./kitty.nix
 
@@ -38,7 +38,7 @@
   ];
 
   fonts.fontconfig.enable = true;
-  fonts.fontDir.enable = true;
+  # fonts.fontDir.enable = true;
 
   xdg = {
     # Allow modification of app assosications

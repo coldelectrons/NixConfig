@@ -1,8 +1,6 @@
 { config, lib, pkgs, inputs, ... }:
 with lib;
 let
-  c = config.lib.stylix.colors.withHashtag;
-  f = config.stylix.fonts;
   desktopX = config.services.xserver.desktopManager;
   desktopW = config.services.desktopManager;
   kdeconnect-pkg = if (desktopX.plasma5.enable) then
@@ -22,18 +20,6 @@ in {
     autoNumlock = true;
     wayland.enable = desktopW.plasma6.enable;
     settings = {
-      General.background =
-        mkIf (config.stylix.image != null) "${config.stylix.image}";
-      Theme = {
-        CursorSize = config.stylix.cursor.size;
-        CursorTheme = if (config.stylix.cursor != null) then
-          config.stylix.cursor.name
-        else
-          "breeze_cursors";
-        Font = "${f.sansSerif.name},${
-            toString f.sizes.applications
-          },-1,0,50,0,0,0,0,0";
-      };
     };
   };
 
@@ -45,8 +31,6 @@ in {
 
   environment.systemPackages = with pkgs;
     (mkMerge [
-      (mkIf (config.stylix.cursor.package != null)
-        [ config.stylix.cursor.package ])
       ([
         # Apps
         krename

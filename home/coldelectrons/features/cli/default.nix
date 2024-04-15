@@ -9,26 +9,25 @@
     ./cava.nix
     ./direnv.nix
     ./eza.nix
-    ./fish.nix
     ./fzf.nix
     ./gh.nix
     ./git.nix
     ./gpg.nix
     ./jujutsu.nix
-    ./lyrics.nix
-    ./nix-index.nix
+    # ./nix-index.nix
     ./ssh.nix
     ./tmux.nix
     ./starship.nix
-    ./zsh.nix
+    # ./zsh.nix
   ];
 
-  #programs.command-not-found.enable = true;
+  # incompatible with nix-index shell integrations
+  programs.command-not-found.enable = true;
 
   home.packages = with pkgs; [
-    toilet # Display fancy text in terminal
-    dwt1-shell-color-scripts # Display cool graphics in terminal
-    cmatrix # Show off the Matrix
+    # toilet # Display fancy text in terminal
+    # dwt1-shell-color-scripts # Display cool graphics in terminal
+    # cmatrix # Show off the Matrix
     timer # Cooler timer in terminal
     tree
     tldr # better man pages
@@ -43,10 +42,12 @@
     ncdu # TUI disk usage
     ripgrep # Better grep
     fd # Better find
+    curl
+    wget
+    mc
     httpie # Better curl
     diffsitter # Better diff
     jq # JSON pretty printer and manipulator
-    trekscii # Cute startrek cli printer
     timer # To help with my ADHD paralysis
 
     gnugrep gnused
@@ -70,16 +71,14 @@
     zdns
     hw-probe
     usbutils
-    cyme
+    cyme # a better lsusb
     usbview
     clinfo
-    usbimage
+    usbimager
     rpi-imager
     sshfs
 
     ltex-ls # Spell checking LSP
-
-    tly # Tally counter
 
     mdcat # cat for markdown
     termpdfpy # graphical reader for inside kitty
@@ -97,7 +96,7 @@
 
     # Nix Tools
     nil # Nix LSP
-    nixfmt # Nix formatter
+    nixfmt-classic # Nix formatter
     nvd # Differ
     nix-output-monitor
     nh # Nice wrapper for NixOS and HM

@@ -17,9 +17,9 @@
   variables.useKonsole = false;
   variables.machine.gpu = "nvidia";
   variables.desktop.displayManager = "wayland";
-  variables.machine.motherboard = "intel";
+  # variables.machine.motherboard = "intel";
   variables.machine.buildType = "laptop";
-  variables.machine.lowSpec = true;
+  # variables.machine.lowSpec = true;
   ###
 
   # Install a couple more packages

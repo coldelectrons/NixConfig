@@ -16,9 +16,7 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     # Extras
-    stylix.url = "github:danth/stylix";
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -41,6 +39,10 @@
       url = "github:NovaViper/Wallpapers";
       flake = false;
     };
+    freecad-realthunder = {
+      url = "github:coldelectrons/freecad-realthunder-git-nix-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
@@ -54,7 +56,11 @@
       pkgsFor = lib.genAttrs systems (system:
         import nixpkgs {
           inherit system;
-          config.allowUnfree = true;
+          overlays = [ inputs.nur.overlay ];
+          config = {
+            allowUnfree = true;
+            allowUnfreePredicate = (_: true);
+          };
         });
     in {
       inherit lib;

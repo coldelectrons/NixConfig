@@ -20,7 +20,7 @@
 
     # Terminals
     #./alacritty.nix
-    ./wezterm.nix
+    # ./wezterm.nix
     #./rio.nix
     ./kitty.nix
 
@@ -32,14 +32,12 @@
   ];
 
   home.packages = with pkgs; [
-    rpi-imager
-    sirikali
     pipx
   ];
 
   environment.localBinInPath = true;
   fonts.fontconfig.enable = true;
-  fonts.fontDir.enable = true;
+  # fonts.fontDir.enable = true;
 
   xdg = {
     # Allow modification of app assosications

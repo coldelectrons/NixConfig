@@ -8,11 +8,12 @@
     ./eza.nix
     ./fzf.nix
     ./git.nix
-    ./gpg.nix
-    ./nix-index.nix
+    # ./gpg.nix
+    # ./nix-index.nix
     ./zsh.nix
   ];
 
+  # incompatible with nix-index shell integrations
   #programs.command-not-found.enable = true;
 
   home.packages = with pkgs; [

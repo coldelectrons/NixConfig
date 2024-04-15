@@ -45,7 +45,7 @@ lvim.builtin.which_key.mappings["t"] = {
 	d = { "<cmd>Trouble document_diagnostics<cr>", "Diagnostics" },
 	q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
 	l = { "<cmd>Trouble loclist<cr>", "LocationList" },
-	w = { "<cmd>Trouble workspace_diagnostics<cr>", "Wordspace Diagnostics" },
+	w = { "<cmd>Trouble workspace_diagnostics<cr>", "Workspace Diagnostics" },
 }
 lvim.builtin.which_key.mappings["z"] = {
 	name = "+Telekasten",
@@ -72,23 +72,32 @@ lvim.builtin.which_key.mappings["z"] = {
 	v = { "<cmd>Telekasten switch_vault<cr>", "switch vault" },
 	Z = { "<cmd>Telekasten panel<cr>", "command palette panel" },
 }
-lvim.builtin.which_key.mappings["r"] = {
-	name = "+IronRepl",
-	s = { "<cmd>IronRepl<cr>", "open repl" },
-	r = { "<cmd>IronRestart<cr>", "restart repl" },
-	f = { "<cmd>IronFocus<cr>", "focus on repl" },
-	h = { "<cmd>IronHide<cr>", "hide repl" },
-}
+-- lvim.builtin.which_key.mappings["z"] = {
+--   f = "<cmd>ZkNotes { excludeHrefs = { 'node_modules' } }<cr>", "find notes"},
+--   t = "<cmd>ZkTags { excludeHrefs = { 'node_modules' } }<cr>", "find tags"},
+--   n = "<cmd>ZkNew({title = '' })<LEFT><LEFT><LEFT><LEFT>", "new note"},
+--   e = "<cmd>'<,'>ZkNewFromTitleSelection<cr>", "new note from selection"},
+-- }
+--
+-- lvim.builtin.which_key.mappings["r"] = {
+-- 	name = "+IronRepl",
+-- 	s = { "<cmd>IronRepl<cr>", "open repl" },
+-- 	r = { "<cmd>IronRestart<cr>", "restart repl" },
+-- 	f = { "<cmd>IronFocus<cr>", "focus on repl" },
+-- 	h = { "<cmd>IronHide<cr>", "hide repl" },
+-- }
 
 lvim.keys.normal_mode["s"] = ":HopChar2<cr>"
 lvim.keys.normal_mode["S"] = ":HopWord<cr>"
-lvim.builtin.which_key.mappings["H"] = {
-	name = "+Hop",
-	f = { "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>", "hop after cursor on current line" },
-	F = { "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>", "hop before cursor on current line" },
-	t = { "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })<cr>", "hop after cursor on current line" },
-	T = { "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })<cr>", "hop before cursor on current line" },
-}
+-- lvim.builtin.which_key.mappings["H"] = {
+-- 	name = "+Hop",
+-- 	f = { "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>", "hop after cursor on current line" },
+-- 	F = { "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>", "hop before cursor on current line" },
+-- 	t = { "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })<cr>", "hop after cursor on current line" },
+-- 	T = { "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })<cr>", "hop before cursor on current line" },
+-- }
+lvim.keys.normal_mode["<A-Up>"] = ":GUIFontSizeUp<cr>"
+lvim.keys.normal_mode["<A-Down>"] = ":GUIFontSizeDown<cr>"
 
 -- -- Change theme settings
 lvim.colorscheme = "tokyodark"
@@ -105,7 +114,7 @@ lvim.builtin.treesitter.auto_install = true
 -- lvim.builtin.treesitter.ignore_install = { "haskell" }
 
 -- -- always installed on startup, useful for parsers without a strict filetype
-lvim.builtin.treesitter.ensure_installed = { "comment", "markdown_inline", "regex", "python" }
+lvim.builtin.treesitter.ensure_installed = { "comment", "markdown_inline", "regex", "python", "lua", "nix" }
 
 -- -- generic LSP settings <https://www.lunarvim.org/docs/languages#lsp-support>
 
@@ -194,8 +203,8 @@ lvim.plugins = {
 	{ "pbrisbin/vim-mkdir" },
 	-- And so it goes, I hear motion
 	{
-		"phaazon/hop.nvim",
-		branch = "v2", -- optional but strongly recommended
+		"smoka7/hop.nvim",
+		tag = "*", -- optional but strongly recommended
 		config = function()
 			-- you can configure Hop the way you like here; see :h hop-config
 			require("hop").setup()
@@ -268,6 +277,15 @@ lvim.plugins = {
       "ekickx/clipboard-image.nvim",
 		},
 	},
+  {
+  "zk-org/zk-nvim",
+  config = function()
+    require("zk").setup({
+      picker = "telescope",
+
+    })
+  end
+  },
 	{
 		"kevinhwang91/nvim-bqf",
 		event = { "BufRead", "BufNew" },
@@ -388,36 +406,38 @@ lvim.plugins = {
 			"nvim-lua/plenary.nvim",
 		},
 	},
-	"ChristianChiarulli/swenv.nvim",
+	-- "ChristianChiarulli/swenv.nvim",
 	"stevearc/dressing.nvim",
-  "huggingface/llm.nvim",
   "ellisonleao/glow.nvim",
+  "ktunprasert/gui-font-resize.nvim",
 }
 
-require("llm").setup({
-  backend = "ollama",
-  model = "codellama:7b",
-  url = "http://localhost:11434/api/generate",
-  request_body = {
-    parameters = {
-      max_new_tokens = 60,
-      temperature = 0.2,
-      top_p = 0.95,
-    }
-  },
-  tokens_to_clear = { "<|endoftext|>" },
-  fim = {
-    enabled = true,
-    prefix = "<fim_prefix>",
-    middle = "<fim_middle>",
-    suffix = "<fim_suffix>",
-  },
-  debounce_ms = 150,
-  accept_keymap = "<C-Tab>",
-  dismiss_keymap = "<S-C-Tab>",
-  enable_suggestions_on_startup = false,
-  enable_suggestions_on_files = {"*.py", "*.rs", "*.cpp", "*.h", "*.c"},
-})
+require("gui-font-resize").setup({default_size=10,change_by=1,bounds={maximum=20}})
+
+-- require("llm").setup({
+--   backend = "ollama",
+--   model = "codellama:7b",
+--   url = "http://localhost:11434/api/generate",
+--   request_body = {
+--     parameters = {
+--       max_new_tokens = 60,
+--       temperature = 0.2,
+--       top_p = 0.95,
+--     }
+--   },
+--   tokens_to_clear = { "<|endoftext|>" },
+--   fim = {
+--     enabled = true,
+--     prefix = "<fim_prefix>",
+--     middle = "<fim_middle>",
+--     suffix = "<fim_suffix>",
+--   },
+--   debounce_ms = 150,
+--   accept_keymap = "<C-Tab>",
+--   dismiss_keymap = "<S-C-Tab>",
+--   enable_suggestions_on_startup = false,
+--   enable_suggestions_on_files = {"*.py", "*.rs", "*.cpp", "*.h", "*.c"},
+-- })
 
 lvim.builtin.which_key.mappings["C"] = {
 	name = "Python",

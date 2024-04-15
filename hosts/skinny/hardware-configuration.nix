@@ -8,7 +8,6 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
   boot.consoleLogLevel = 0;
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ "amdgpu" ];
@@ -16,14 +15,11 @@
     # "kvm-intel"
   ];
   boot.extraModulePackages = with config.boot.kernelPackages; [
-    zenpower
   ];
   boot.kernelParams = [ 
   ];                                                                                                                                   
   environment.systemPackages = with pkgs; [
     linux-firmware
-    zenstates
-    amdctl
   ];
   
   fileSystems."/" =

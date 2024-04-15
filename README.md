@@ -2,6 +2,8 @@
 
 # My NixOS configurations
 
+WIP. No warranty.
+
 Here's my NixOS/home-manager config files. Requires [Nix flakes](https://nixos.wiki/wiki/Flakes).
 
 Looking for something simpler to start out with flakes? Try [this guy's config repo](https://github.com/Misterio77/nix-starter-config).
@@ -16,8 +18,6 @@ Looking for something simpler to start out with flakes? Try [this guy's config r
 
 ## Highlights
 - Multiple **NixOS configurations**, including **desktop**, **laptop**, **server**
-- **Opt-in persistence** through impermanence + blank snapshotting
-- **Encrypted** single **BTRFS** partition
 - Fully **declarative** **self-hosted** stuff
 - Deployment **secrets** using **sops-nix**
 - **Mesh networked** hosts with **tailscale** and **headscale**
@@ -63,13 +63,7 @@ Looking for something simpler to start out with flakes? Try [this guy's config r
 
 ## About the installation
 
-All my computers use a single btrfs (encrypted on all except headless systems)
-partition, with subvolumes for `/nix`, a `/persist` directory (which I opt in
-using `impermanence`), swap file, and a root subvolume (cleared on every boot).
-
-Home-manager is used in a standalone way, and because of opt-in persistence is
-activated on every boot with `loginShellInit`.
-
+TBD - This is a WIP. *Do not expect this config work.*
 
 ## How to bootstrap
 

@@ -3,7 +3,6 @@ with lib; {
 
   imports = with inputs;
     [
-      stylix.homeManagerModules.stylix
       plasma-manager.homeManagerModules.plasma-manager
       nixvim.homeManagerModules.nixvim
     ] ++ (builtins.attrValues outputs.homeManagerModules);

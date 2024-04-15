@@ -59,11 +59,16 @@
   variables.useVR = false;
   variables.useKonsole = false;
   variables.desktop.displayManager = "wayland";
-  variables.machine.motherboard = "intel";
-  variables.machine.buildType = "desktop";
+  # variables.machine.motherboard = "intel";
+  variables.machine.buildType = "laptop";
   variables.machine.gpu = "nvidia";
   #variables.machine.lowSpec = false;
   ###
+
+  boot = {
+    kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+    binfmt.emulatedSystems = [ "aarch64-linux" "i686-linux" ];
+  };
 
   hardware = {
     # Configure GPU

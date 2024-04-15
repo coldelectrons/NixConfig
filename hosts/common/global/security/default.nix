@@ -3,7 +3,6 @@
 {
   imports =
     [
-      # ./gpg.nix
       # ./doas.nix
       ./firejail.nix
       ./firewall.nix

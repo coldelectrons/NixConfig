@@ -51,19 +51,6 @@ with lib;
   };
 
   programs = {
-    /* konsole = {
-         enable = mkIf (config.variables.useKonsole) true;
-         defaultProfile = "DefaultThemed";
-         profiles.DefaultThemed = {
-           name = "DefaultThemed";
-           #colorScheme = "";
-           font = {
-             name = "${config.stylix.fonts.monospace.name}";
-             size = config.stylix.fonts.sizes.terminal;
-           };
-         };
-       };
-    */
     plasma = {
       enable = true;
       workspace.clickItemTo = "select";

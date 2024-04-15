@@ -5,10 +5,10 @@
 
   environment.systemPackages = with pkgs; [ sops ];
 
-  sops = {
-    gnupg = {
-      home = "/home/${config.variables.username}/.gnupg";
-      sshKeyPaths = [ ];
-    };
-  };
+  # sops = {
+  #   gnupg = {
+  #     home = "/home/${config.variables.username}/.gnupg";
+  #     sshKeyPaths = [ ];
+  #   };
+  # };
 }

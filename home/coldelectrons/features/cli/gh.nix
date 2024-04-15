@@ -9,7 +9,7 @@
       prompt = "enabled";
     };
   };
-  home.persistence = {
-    "/persist/home/thomas".directories = [ ".config/gh" ];
-  };
+  # home.persistence = {
+  #   "/persist/home/thomas".directories = [ ".config/gh" ];
+  # };
 }
