@@ -9,7 +9,7 @@ let
   hasNeovim = config.programs.neovim.enable;
   # hasNeomutt = config.programs.neomutt.enable;
   # hasShellColor = config.programs.shellcolor.enable;
-  hasKitty = config.programs.kitty.enable;
+  # hasKitty = config.programs.kitty.enable;
   hasAwsCli = config.programs.awscli.enable;
   # shellcolor = "${pkgs.shellcolord}/bin/shellcolor";
 in
@@ -24,13 +24,13 @@ in
     shellAbbrs = rec {
       jqless = "jq -C | less -r";
 
-      n = "nix";
-      nd = "nix develop -c $SHELL";
-      ns = "nix shell";
-      nsn = "nix shell nixpkgs#";
-      nb = "nix build";
-      nbn = "nix build nixpkgs#";
-      nf = "nix flake";
+      # n = "nix";
+      # nd = "nix develop -c $SHELL";
+      # ns = "nix shell";
+      # nsn = "nix shell nixpkgs#";
+      # nb = "nix build";
+      # nbn = "nix build nixpkgs#";
+      # nf = "nix flake";
 
       nr = "systemd-run --no-ask-password --uid=0 --system --scope -p MemoryLimit=16000M -p CPUQuota=60% nixos-rebuild";
       hm = "systemd-run --no-ask-password --uid=1000 --user --scope -p MemoryLimit=16000M -p CPUQuota=60% home-manager";
@@ -39,7 +39,7 @@ in
       # hm = "home-manager --flake .";
       # hms = "home-manager --flake . switch";
 
-      s = mkIf hasSpecialisationCli "specialisation";
+      # s = mkIf hasSpecialisationCli "specialisation";
 
       ls = mkIf hasExa "eza --icons -l -T -L=1";
       cat = "bat";
@@ -53,15 +53,15 @@ in
 
 
       # vrg = mkIf (hasNeomutt && hasRipgrep) "nvimrg";
-      vim = mkIf hasNeovim "nvim";
-      vi = vim;
-      v = vim;
+      # vim = mkIf hasNeovim "nvim";
+      # vi = vim;
+      # v = vim;
 
       # mutt = mkIf hasNeomutt "neomutt";
       # m = mutt;
 
-      cik = mkIf hasKitty "clone-in-kitty --type os-window";
-      ck = cik;
+      # cik = mkIf hasKitty "clone-in-kitty --type os-window";
+      # ck = cik;
     };
     shellAliases = {
       # Clear screen and scrollback
@@ -149,9 +149,6 @@ in
         set -U fish_pager_color_description   yellow
         set -U fish_pager_color_prefix        'white' '--bold' '--underline'
         set -U fish_pager_color_progress      'brwhite' '--background=cyan'
-
-        # AWS CLI completions (https://github.com/aws/aws-cli/issues/1079)
-        complete --command aws --no-files --arguments '(begin; set --local --export COMP_SHELL fish; set --local --export COMP_LINE (commandline); aws_completer | sed \'s/ $//\'; end)'
       '';
   };
 }
