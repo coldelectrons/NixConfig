@@ -33,6 +33,12 @@
     # email
     ./thunderbird.nix
 
+  ];
+
+  home.packages = with pkgs; [
+    rpi-imager
+    sirikali
+    pipx
     # utils
     gparted
     exfatprogs
@@ -40,12 +46,6 @@
     util-linux
     partition-manager
     dosfstools
-  ];
-
-  home.packages = with pkgs; [
-    rpi-imager
-    sirikali
-    pipx
   ];
 
   fonts.fontconfig.enable = true;
