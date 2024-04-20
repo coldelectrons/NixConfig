@@ -36,7 +36,7 @@ in
 
       s = mkIf hasSpecialisationCli "specialisation";
 
-      ls = mkIf hasExa "eza";
+      ls = mkIf hasExa "exa -l";
       exa = mkIf hasExa "eza";
 
 

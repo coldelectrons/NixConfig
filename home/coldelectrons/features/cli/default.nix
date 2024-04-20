@@ -104,6 +104,7 @@
     nix-prefetch-github # prefetch tool for Github
 
     gallery-dl # datahoarding ftw
+    yt-dlp
     signald
     signal-export
     gurk-rs

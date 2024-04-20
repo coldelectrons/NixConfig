@@ -2,7 +2,6 @@
 
 {
   imports = [ 
-    # ./email.nix
     ./prusa-slicer.nix
     # ./obs.nix
     # ./eclipse.nix

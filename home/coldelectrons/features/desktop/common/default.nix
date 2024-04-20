@@ -29,6 +29,17 @@
 
     # messaging
     ./signal.nix
+    
+    # email
+    ./thunderbird.nix
+
+    # utils
+    gparted
+    exfatprogs
+    fatresize
+    util-linux
+    partition-manager
+    dosfstools
   ];
 
   home.packages = with pkgs; [
