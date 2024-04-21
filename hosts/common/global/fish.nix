@@ -1,16 +1,16 @@
 { pkgs, lib, config, ... }:
 let
   inherit (lib) mkIf;
-  packageNames = map (p: p.pname or p.name or null) config.home.packages;
-  hasPackage = name: lib.any (x: x == name) packageNames;
-  hasRipgrep = hasPackage "ripgrep";
-  hasExa = hasPackage "eza";
-  hasSpecialisationCli = hasPackage "specialisation";
-  hasNeovim = config.programs.neovim.enable;
+  # packageNames = map (p: p.pname or p.name or null) config.home.packages;
+  # hasPackage = name: lib.any (x: x == name) packageNames;
+  # hasRipgrep = hasPackage "ripgrep";
+  # hasExa = hasPackage "eza";
+  # hasSpecialisationCli = hasPackage "specialisation";
+  # hasNeovim = config.programs.neovim.enable;
   # hasNeomutt = config.programs.neomutt.enable;
   # hasShellColor = config.programs.shellcolor.enable;
   # hasKitty = config.programs.kitty.enable;
-  hasAwsCli = config.programs.awscli.enable;
+  # hasAwsCli = config.programs.awscli.enable;
   # shellcolor = "${pkgs.shellcolord}/bin/shellcolor";
 in
 {
@@ -41,7 +41,8 @@ in
 
       # s = mkIf hasSpecialisationCli "specialisation";
 
-      ls = mkIf hasExa "eza --icons -l -T -L=1";
+      # ls = mkIf hasExa "eza --icons -l -T -L=1";
+      ls = "eza --icons -l -T -L=1";
       cat = "bat";
       htop = "btm";
       fd = "fd -Lu";
@@ -49,7 +50,8 @@ in
       # neofetch = "disfetch";
       # fetch = "disfetch";
       # gitfetch = "onefetch";
-      exa = mkIf hasExa "eza";
+      # exa = mkIf hasExa "eza";
+      exa = "eza";
 
 
       # vrg = mkIf (hasNeomutt && hasRipgrep) "nvimrg";
