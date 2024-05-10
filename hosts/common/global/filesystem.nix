@@ -10,6 +10,10 @@
     libimobiledevice
     ifuse # optional, to mount using 'ifuse'
     gvfs
+    cryptsetup
+    ctmg
+    util-linux
+    exfatprogs
   ];
 
   boot.supportedFilesystems = [
