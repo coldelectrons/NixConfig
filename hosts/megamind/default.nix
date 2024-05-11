@@ -3,7 +3,7 @@
   imports = [
     ### Device Configs
     inputs.hardware.nixosModules.common-cpu-amd
-    inputs.hardware.nixosModules.common-gpu-nvidia
+    # inputs.hardware.nixosModules.common-gpu-nvidia
     inputs.hardware.nixosModules.common-pc-ssd
     inputs.sops-nix.nixosModules.sops
     ./hardware-configuration.nix
@@ -73,6 +73,21 @@
     binfmt.emulatedSystems = [ "aarch64-linux" "i686-linux" ];
   };
 
+  hardware = {
+    # Configure GPU
+    nvidia = {
+      powerManagement.enable = true;
+      modesetting.enable = true;
+      open = false;
+      nvidiaSettings =
+        if (config.variables.desktop.displayManager == "x11") then
+          true
+        else
+          false;
+      # Optionally, you may need to select the appropriate driver version for your specific GPU.
+      package = config.boot.kernelPackages.nvidiaPackages.latest;
+    };
+  };
 
   services.xserver.videoDrivers = [ "nvidia" ];
 
