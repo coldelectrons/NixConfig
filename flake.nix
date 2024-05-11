@@ -103,6 +103,10 @@
           modules = [ ./hosts/heavy ];
           specialArgs = { inherit inputs outputs; };
         };
+        megamind = lib.nixosSystem {
+          modules = [ ./hosts/megamind ];
+          specialArgs = { inherit inputs outputs; };
+        };
         skinny = lib.nixosSystem {
           modules = [ ./hosts/skinny ];
           specialArgs = { inherit inputs outputs; };
@@ -130,6 +134,11 @@
         };
         # servers
         "coldelectrons@heavy" = lib.homeManagerConfiguration {
+          modules = [ ./home/coldelectrons/heavy.nix ];
+          pkgs = pkgsFor.x86_64-linux;
+          extraSpecialArgs = { inherit inputs outputs; };
+        };
+        "coldelectrons@megamind" = lib.homeManagerConfiguration {
           modules = [ ./home/coldelectrons/heavy.nix ];
           pkgs = pkgsFor.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
