@@ -42,7 +42,7 @@
   networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp0s20f3.useDHCP = lib.mkDefault true;
 
-  networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  #networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
@@ -100,6 +100,16 @@
     #systemPackages = with pkgs; [ gwe ];
     sessionVariables.LIBVA_DRIVER_NAME = "nvidia";
   };
+
+  environment.localBinInPath = true;
+
+  environment.extraInit = ''
+    # Do not want this in the environment. NixOS always sets it and does not
+    # provide any option not to, so I must unset it myself via the
+    # environment.extraInit option.
+    unset -v SSH_ASKPASS
+    unset -v GIT_ASKPASS
+  '';
 
   # system.activationScripts =
   #   lib.mkIf (config.services.hardware.openrgb.enable) {
