@@ -23,7 +23,8 @@
   environment.systemPackages = with pkgs; [
     oterm
     aichat
-    colmapWithCuda
+    # colmapWithCuda # doesn't compile
+    python312Packages.opensfm
   ];
 }
 
