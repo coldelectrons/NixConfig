@@ -24,7 +24,7 @@
     oterm
     aichat
     # colmapWithCuda # doesn't compile
-    python312Packages.opensfm
+    # python312Packages.opensfm # error about distutils:
   ];
 }
 
