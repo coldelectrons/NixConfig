@@ -3,7 +3,7 @@
   imports = [
     ### Device Configs
     inputs.hardware.nixosModules.common-cpu-intel
-    inputs.hardware.nixosModules.common-gpu-nvidia
+    #inputs.hardware.nixosModules.common-gpu-nvidia
     inputs.hardware.nixosModules.common-pc-ssd
     ./hardware-configuration.nix
     # ./disks.nix
@@ -61,7 +61,8 @@
   variables.desktop.displayManager = "wayland";
   # variables.machine.motherboard = "intel";
   variables.machine.buildType = "laptop";
-  variables.machine.gpu = "nvidia";
+  #variables.machine.gpu = "nvidia";
+  variables.machine.gpu = "intel";
   #variables.machine.lowSpec = false;
   ###
 
@@ -70,35 +71,36 @@
     binfmt.emulatedSystems = [ "aarch64-linux" "i686-linux" ];
   };
 
-  hardware = {
-    # Configure GPU
-    nvidia = {
-      powerManagement.enable = true;
-      modesetting.enable = true;
-      open = false;
-      nvidiaSettings =
-        if (config.variables.desktop.displayManager == "x11") then
-          true
-        else
-          false;
-      # Optionally, you may need to select the appropriate driver version for your specific GPU.
-      package = config.boot.kernelPackages.nvidiaPackages.latest;
-    };
-  };
-  hardware.nvidia.prime = {
-    offload = {
-      enable = true;
-      enableOffloadCmd = true;
-    };
-    intelBusId = "PCI:0:2:0";
-    nvidiaBusId = "PCI:1:0:0";
-  };
+  #hardware = {
+    ## Configure GPU
+    #nvidia = {
+      #powerManagement.enable = true;
+      #modesetting.enable = true;
+      #open = false;
+      #nvidiaSettings =
+        #if (config.variables.desktop.displayManager == "x11") then
+          #true
+        #else
+          #false;
+      ## Optionally, you may need to select the appropriate driver version for your specific GPU.
+      #package = config.boot.kernelPackages.nvidiaPackages.latest;
+    #};
+  #};
+  #hardware.nvidia.prime = {
+    #offload = {
+      #enable = true;
+      #enableOffloadCmd = true;
+    #};
+    #intelBusId = "PCI:0:2:0";
+    #nvidiaBusId = "PCI:1:0:0";
+  #};
 
-  services.xserver.videoDrivers = [ "nvidia" ];
+  #services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = [ "i915" ];
 
   environment = {
     #systemPackages = with pkgs; [ gwe ];
-    sessionVariables.LIBVA_DRIVER_NAME = "nvidia";
+    #sessionVariables.LIBVA_DRIVER_NAME = "nvidia";
   };
 
   environment.localBinInPath = true;
