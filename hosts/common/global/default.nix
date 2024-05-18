@@ -83,6 +83,6 @@
     openssl
     aha
     mc
-    btm
+    bottom
   ];
 }
