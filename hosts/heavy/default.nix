@@ -5,7 +5,7 @@
     inputs.hardware.nixosModules.common-cpu-amd
     inputs.hardware.nixosModules.common-gpu-amd
     inputs.hardware.nixosModules.common-pc-ssd
-    inputs.sops-nix.nixosModules.sops
+    # inputs.sops-nix.nixosModules.sops
     ./hardware-configuration.nix
     # ./disks.nix
 
@@ -15,28 +15,27 @@
 
     ### Hardware
     # ../common/optional/rgb.nix
-    ../common/optional/bluetooth.nix
+    # ../common/optional/bluetooth.nix
     # ../common/optional/qmk.nix
 
     ### Desktop Environment
-    ../common/optional/desktop/kde/plasma6.nix
+    # ../common/optional/desktop/kde/plasma6.nix
 
     ### Service
-    ../common/optional/theme.nix
+    # ../common/optional/theme.nix
     ../common/optional/quietboot.nix
     ../common/optional/libvirt.nix
     ../common/optional/syncthing.nix
     ../common/optional/tailscale.nix
 
     ### Applications
-    ../common/optional/flatpak.nix
-    ../common/optional/appimage.nix
-    ../common/optional/localsend.nix
-    ../common/optional/gaming.nix
-    #../common/optional/sunshine-client.nix
+    # ../common/optional/flatpak.nix
+    # ../common/optional/appimage.nix
+    # ../common/optional/localsend.nix
   ];
 
-  networking.hostName = "hades"; # Define your hostname.
+  networking.hostName = "heavy"; # Define your hostname.
+  networking.networkmanager.enable = true;
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
@@ -48,6 +47,8 @@
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+  services.avahi.enable = true;
+  services.avahi.nssmdns = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -58,11 +59,11 @@
   system.stateVersion = "24.05"; # Did you read the comment?
 
   ### Special Variables
-  variables.useVR = true;
+  variables.useVR = false;
   variables.useKonsole = false;
   variables.desktop.displayManager = "wayland";
   # variables.machine.motherboard = "amd";
-  variables.machine.buildType = "desktop";
+  variables.machine.buildType = "server";
   variables.machine.gpu = "amd";
   #variables.machine.lowSpec = false;
   ###
@@ -70,20 +71,54 @@
   boot = {
     kernelPackages = pkgs.linuxKernel.packages.linux_zen;
     binfmt.emulatedSystems = [ "aarch64-linux" "i686-linux" ];
+    supportedFilesystems = [ "zfs" ];
+    zfs.forceImportRoot = false;
+    zfs.extraPools = [ "tank" "utank" "vtank" ];
+    zfs.devNodes = "/dev/disk/by-partuuid/";
+    loader.systemd-boot.enable = true;
+    loader.efi.canTouchEfiVariables = true;
   };
+  environment.systemPackages = with pkgs; [
+    zfs
+  ];
 
+  # needed for zfs
+  networking.hostId = "137dbeef";
 
   services.xserver.videoDrivers = [ "amdgpu" ];
 
-  environment = {
-    #systemPackages = with pkgs; [ gwe ];
-    sessionVariables = {
-      # This is perhaps the easiest way to get Steam to scale
-      STEAM_FORCE_DESKTOPUI_SCALING = "1.5";
-      LIBVA_DRIVER_NAME = "amdgpu";
-    };
+  # Set your time zone.
+  time.timeZone = "America/New_York";
+
+  # Select internationalisation properties.
+  i18n.defaultLocale = "en_US.UTF-8";
+
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = "en_US.UTF-8";
+    LC_IDENTIFICATION = "en_US.UTF-8";
+    LC_MEASUREMENT = "en_US.UTF-8";
+    LC_MONETARY = "en_US.UTF-8";
+    LC_NAME = "en_US.UTF-8";
+    LC_NUMERIC = "en_US.UTF-8";
+    LC_PAPER = "en_US.UTF-8";
+    LC_TELEPHONE = "en_US.UTF-8";
+    LC_TIME = "en_US.UTF-8";
   };
 
+  # Enable the X11 windowing system.
+  services.xserver.enable = true;
+
+  # Enable the XFCE Desktop Environment.
+  services.xserver.displayManager.lightdm.enable = true;
+  #services.xserver.desktopManager.xfce.enable = true;
+  services.xserver.desktopManager.plasma5.enable = true;
+
+  # Configure keymap in X11
+  services.xserver = {
+    layout = "us";
+    xkbVariant = "";
+  };
+  
   environment.localBinInPath = true;
 
   environment.extraInit = ''

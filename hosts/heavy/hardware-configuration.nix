@@ -9,8 +9,6 @@
     ];
 
   boot = {
-    kernelPackages = pkgs.linuxKernel.packages.linux_zen;
-    binfmt.emulatedSystems = [ "aarch64-linux" "i686-linux" ];
     consoleLogLevel = 0;
     # Bootloader
     loader = {
@@ -26,7 +24,7 @@
 
     initrd = {
       availableKernelModules =
-        [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" "sr_mod" ];
+        [ "mpt3sas" "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" "sr_mod" ];
       kernelModules = [ "amdgpu" ];
     };
     kernelModules = [ "kvm-amd" ];
@@ -48,27 +46,17 @@
   ];
   
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/615e2d96-5170-4528-ab8a-b5ccbfa7a79a";
-      fsType = "ext4";
-    };
-
-  fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/e715cd77-b48c-4c87-b0b5-729ed91d7b5d";
-      fsType = "ext4";
-    };
-
-  fileSystems."/home/thomas/.local/share/Steam" =
-    { device = "/dev/disk/by-uuid/7407920b-3535-49d5-b9ed-f73b442ec36d";
+    { device = "/dev/disk/by-uuid/8ae0ca76-699e-4234-92f6-d417f5091a6e";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/F000-517A";
+    { device = "/dev/disk/by-uuid/48E1-8776";
       fsType = "vfat";
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/bfd0f82c-cbb6-459a-bc2d-d4559607a3dd"; }
+    [ { device = "/dev/disk/by-uuid/3a097b2f-a056-4108-bf1a-12aa84008fc1"; }
     ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
@@ -83,7 +71,6 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.enableRedistributableFirmware = true;                                                                                                                                                                   
-  # hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   
 }

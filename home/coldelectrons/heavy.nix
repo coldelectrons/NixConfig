@@ -3,26 +3,22 @@
 {
   imports = [
     ./global
-    ./features/theme
+    # ./features/theme
     ./features/desktop/kde/plasma6
-    ./features/games
+    # ./features/games
     ./features/lunarvim
     ./features/cli
-    ./features/productivity
-    ./features/virt-manager
-    ./features/cli
+    # ./features/productivity
+    # ./features/virt-manager
   ];
 
   ### Special Variables
-  variables.useVR = true;
+  variables.useVR = false;
   variables.useKonsole = false;
   variables.machine.gpu = "amd";
   variables.desktop.displayManager = "wayland";
   # variables.machine.motherboard = "amd";
-  variables.machine.buildType = "desktop";
+  variables.machine.buildType = "server";
   # variables.machine.lowSpec = false;
   ###
-
-  # Install a couple more packages
-  home.packages = with pkgs; [ krita kdePackages.tokodon ];
 }

@@ -40,12 +40,12 @@ lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Project
 lvim.builtin.which_key.mappings["t"] = {
 	name = "+Trouble",
 	t = { "<cmd>TroubleToggle<cr>", "trouble" },
-	r = { "<cmd>Trouble lsp_references<cr>", "References" },
-	f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
-	d = { "<cmd>Trouble document_diagnostics<cr>", "Diagnostics" },
-	q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
-	l = { "<cmd>Trouble loclist<cr>", "LocationList" },
-	w = { "<cmd>Trouble workspace_diagnostics<cr>", "Workspace Diagnostics" },
+	r = { "<cmd>TroubleToggle lsp_references<cr>", "References" },
+	f = { "<cmd>TroubleToggle lsp_definitions<cr>", "Definitions" },
+	d = { "<cmd>TroubleToggle document_diagnostics<cr>", "Diagnostics" },
+	q = { "<cmd>TroubleToggle quickfix<cr>", "QuickFix" },
+	l = { "<cmd>TroubleToggle loclist<cr>", "LocationList" },
+	w = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Workspace Diagnostics" },
 }
 lvim.builtin.which_key.mappings["z"] = {
 	name = "+Telekasten",
@@ -88,14 +88,18 @@ lvim.builtin.which_key.mappings["z"] = {
 -- }
 
 lvim.keys.normal_mode["s"] = ":HopChar2<cr>"
-lvim.keys.normal_mode["S"] = ":HopWord<cr>"
--- lvim.builtin.which_key.mappings["H"] = {
--- 	name = "+Hop",
--- 	f = { "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>", "hop after cursor on current line" },
--- 	F = { "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>", "hop before cursor on current line" },
--- 	t = { "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })<cr>", "hop after cursor on current line" },
--- 	T = { "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })<cr>", "hop before cursor on current line" },
--- }
+lvim.keys.normal_mode["S"] = ":HopChar1<cr>"
+lvim.builtin.which_key.mappings["H"] = {
+	name = "+Hop",
+	-- f = { "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>", "hop after cursor on current line" },
+	-- F = { "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>", "hop before cursor on current line" },
+	-- t = { "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })<cr>", "hop after cursor on current line" },
+	-- T = { "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })<cr>", "hop before cursor on current line" },
+	w = { "<cmd>lua require'hop'.HopWord<cr>", "hop to word" },
+	l = { "<cmd>lua require'hop'.HopLine<cr>", "hop to line" },
+	L = { "<cmd>lua require'hop'.HopLineStart<cr>", "hop to line start" },
+}
+
 lvim.keys.normal_mode["<A-Up>"] = ":GUIFontSizeUp<cr>"
 lvim.keys.normal_mode["<A-Down>"] = ":GUIFontSizeDown<cr>"
 
@@ -197,7 +201,7 @@ lvim.plugins = {
 	{ "catppuccin/nvim", lazy = true, name = "catppuccin", priority = 1000 },
 	{
 		"folke/trouble.nvim",
-		cmd = "TroubleToggle",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
 	},
 	-- misc little things
 	{ "pbrisbin/vim-mkdir" },

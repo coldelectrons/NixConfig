@@ -83,5 +83,6 @@
     openssl
     aha
     mc
+    btm
   ];
 }

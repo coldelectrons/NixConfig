@@ -150,11 +150,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1715526146,
-        "narHash": "sha256-x9oe94tggsUws8Za7VIRbKkO8IPoABSILNo96PyU370=",
+        "lastModified": 1715999765,
+        "narHash": "sha256-+1T/UJfH8ULHN2LLIupA/UuJ9Gk/DJMd49mBINdbo+0=",
         "owner": "coldelectrons",
         "repo": "freecad-realthunder-git-nix-flake",
-        "rev": "30d7c45d793e4d6e4b8ac430b15caf7990aab90b",
+        "rev": "aaafe4fb7f5092fe4499c8dc9527a65eb8db5de4",
         "type": "github"
       },
       "original": {
@@ -307,11 +307,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1715908553,
-        "narHash": "sha256-9te1GH3e4gTARupbBhzqeMDKdVDHEky3AvIGzJpnm+I=",
+        "lastModified": 1715994981,
+        "narHash": "sha256-zJlIrF75R7YIQ04HiIZzKxkly7jgqh/3v+fveJpWrd0=",
         "owner": "fufexan",
         "repo": "nix-gaming",
-        "rev": "8bd322b708faab6e8e09d300acec3ada7443b9a3",
+        "rev": "402773294b7baaffe887fbf6b12dfdc7d0d1b958",
         "type": "github"
       },
       "original": {
@@ -378,11 +378,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1715985933,
-        "narHash": "sha256-5l90g+ORNuhuOJrsyeSY4R7RXYGQrWEKR/UsHjlXqyI=",
+        "lastModified": 1716000872,
+        "narHash": "sha256-i5HuY2XEqTh8z2vg3nRozT39MB87Rh0TxYHtfdwOwuk=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "d573ea71f82e0355ed0074039ce4c1cf75631e5b",
+        "rev": "22f497da633b49af8a5e73017a85aa43077d8788",
         "type": "github"
       },
       "original": {
