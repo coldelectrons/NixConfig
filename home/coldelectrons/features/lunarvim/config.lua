@@ -208,7 +208,7 @@ lvim.plugins = {
 	-- And so it goes, I hear motion
 	{
 		"smoka7/hop.nvim",
-		tag = "*", -- optional but strongly recommended
+		version = "*", -- optional but strongly recommended
 		config = function()
 			-- you can configure Hop the way you like here; see :h hop-config
 			require("hop").setup()
