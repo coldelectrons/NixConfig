@@ -8,38 +8,6 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot = {
-    consoleLogLevel = 0;
-    # Bootloader
-    loader = {
-      grub = {
-        enable = false;
-      };
-      systemd-boot = {
-        enable = true;
-        memtest86.enable = true;
-      };
-      efi.canTouchEfiVariables = true;
-    };
-
-    initrd = {
-      availableKernelModules =
-        [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" "sr_mod" ];
-      #kernelModules = [ "nvidia" ];
-    };
-    kernelModules = [ "kvm-intel" ];
-    kernelParams = [ 
-    ];                                                                                                                                   
-
-    # Swapfile hibernate
-    # resumeDevice = "${MAIN_PART}";
-    # kernelParams = [ "resume_offset=${RESUME_OFFSET}" "nvidia_drm.fbdev=1" ];
-  };
-
-  environment.systemPackages = with pkgs; [
-    linux-firmware
-  ];
-
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/b168bb9d-4769-467e-9618-126769a5bbdc";
       fsType = "ext4";

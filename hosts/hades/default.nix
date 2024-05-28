@@ -35,6 +35,7 @@
     ../common/optional/localsend.nix
     ../common/optional/gaming.nix
     ../common/optional/android-studio.nix
+    ../common/optional/waydroid.nix
     #../common/optional/sunshine-client.nix
   ];
 

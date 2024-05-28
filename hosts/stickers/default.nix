@@ -32,6 +32,7 @@
     ../common/optional/appimage.nix
     ../common/optional/localsend.nix
     ../common/optional/gaming.nix
+    ../common/optional/waydroid.nix
   ];
 
   networking.hostName = "stickers"; # Define your hostname.
@@ -69,8 +70,42 @@
   boot = {
     kernelPackages = pkgs.linuxKernel.packages.linux_zen;
     binfmt.emulatedSystems = [ "aarch64-linux" "i686-linux" ];
+    consoleLogLevel = 0;
+    # Bootloader
+    loader = {
+      grub = {
+        enable = false;
+      };
+      systemd-boot = {
+        enable = true;
+        memtest86.enable = true;
+        consoleMode = "max";
+      };
+      efi.canTouchEfiVariables = true;
+    };
+
+    initrd = {
+      availableKernelModules =
+        [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" "sr_mod" ];
+      systemd.enable = true;
+    };
+    kernelModules = [ "kvm-intel" ];
+    extraModulePackages = with config.boot.kernelPackages; [
+      zenpower
+    ];
+    kernelParams = [ 
+    ];                                                                                                                                   
+
+    plymouth.enable = true;
+    # Swapfile hibernate
+    # resumeDevice = "${MAIN_PART}";
+    # kernelParams = [ "resume_offset=${RESUME_OFFSET}" "nvidia_drm.fbdev=1" ];
   };
 
+  environment.systemPackages = with pkgs; [
+    linux-firmware
+    zenstates
+  ];
   #hardware = {
     ## Configure GPU
     #nvidia = {
