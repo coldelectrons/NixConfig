@@ -32,6 +32,7 @@
     # ../common/optional/flatpak.nix
     # ../common/optional/appimage.nix
     # ../common/optional/localsend.nix
+    ./ssh-serve.nix
   ];
 
   networking.hostName = "heavy"; # Define your hostname.
@@ -81,6 +82,42 @@
   environment.systemPackages = with pkgs; [
     zfs
   ];
+  boot = {
+    consoleLogLevel = 0;
+    # Bootloader
+    loader = {
+      grub = {
+        enable = false;
+      };
+      systemd-boot = {
+        enable = true;
+        memtest86.enable = true;
+      };
+      efi.canTouchEfiVariables = true;
+    };
+
+    initrd = {
+      availableKernelModules =
+        [ "mpt3sas" "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" "sr_mod" ];
+      kernelModules = [ "amdgpu" ];
+    };
+    kernelModules = [ "kvm-amd" ];
+    extraModulePackages = with config.boot.kernelPackages; [
+      zenpower
+    ];
+    kernelParams = [ 
+    ];                                                                                                                                   
+
+    # Swapfile hibernate
+    # resumeDevice = "${MAIN_PART}";
+    # kernelParams = [ "resume_offset=${RESUME_OFFSET}" "nvidia_drm.fbdev=1" ];
+  };
+
+  environment.systemPackages = with pkgs; [
+    linux-firmware
+    zenstates
+    amdctl
+  ];
 
   # needed for zfs
   networking.hostId = "137dbeef";
@@ -109,9 +146,9 @@
   services.xserver.enable = true;
 
   # Enable the XFCE Desktop Environment.
-  services.xserver.displayManager.lightdm.enable = true;
+  #services.xserver.displayManager.lightdm.enable = true;
   #services.xserver.desktopManager.xfce.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+  #services.xserver.desktopManager.plasma5.enable = true;
 
   # Configure keymap in X11
   services.xserver = {

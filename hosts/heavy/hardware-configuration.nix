@@ -8,42 +8,6 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot = {
-    consoleLogLevel = 0;
-    # Bootloader
-    loader = {
-      grub = {
-        enable = false;
-      };
-      systemd-boot = {
-        enable = true;
-        memtest86.enable = true;
-      };
-      efi.canTouchEfiVariables = true;
-    };
-
-    initrd = {
-      availableKernelModules =
-        [ "mpt3sas" "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" "sr_mod" ];
-      kernelModules = [ "amdgpu" ];
-    };
-    kernelModules = [ "kvm-amd" ];
-    extraModulePackages = with config.boot.kernelPackages; [
-      zenpower
-    ];
-    kernelParams = [ 
-    ];                                                                                                                                   
-
-    # Swapfile hibernate
-    # resumeDevice = "${MAIN_PART}";
-    # kernelParams = [ "resume_offset=${RESUME_OFFSET}" "nvidia_drm.fbdev=1" ];
-  };
-
-  environment.systemPackages = with pkgs; [
-    linux-firmware
-    zenstates
-    amdctl
-  ];
   
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/8ae0ca76-699e-4234-92f6-d417f5091a6e";
