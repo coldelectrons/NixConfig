@@ -27,6 +27,7 @@
     ../common/optional/libvirt.nix
     ../common/optional/syncthing.nix
     ../common/optional/tailscale.nix
+    ../common/optional/ollama.nix
 
     ### Applications
     # ../common/optional/flatpak.nix
@@ -113,11 +114,6 @@
     zenstates
     amdctl
   ];
-
-  service.ollama = {
-    enable = true;
-    acceleration = "rocm";
-  };
 
   services.zfs.autoScrub = {
     enable = true;
