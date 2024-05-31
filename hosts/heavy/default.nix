@@ -74,15 +74,8 @@
     binfmt.emulatedSystems = [ "aarch64-linux" "i686-linux" ];
     supportedFilesystems = [ "zfs" ];
     zfs.forceImportRoot = false;
-    zfs.extraPools = [ "tank" "utank" "vtank" ];
+    zfs.extraPools = [ "utank" "vtank" ];
     zfs.devNodes = "/dev/disk/by-partuuid/";
-    loader.systemd-boot.enable = true;
-    loader.efi.canTouchEfiVariables = true;
-  };
-  environment.systemPackages = with pkgs; [
-    zfs
-  ];
-  boot = {
     consoleLogLevel = 0;
     # Bootloader
     loader = {
@@ -114,6 +107,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    zfs
     linux-firmware
     zenstates
     amdctl
