@@ -70,7 +70,7 @@
   ###
 
   boot = {
-    kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+    kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
     binfmt.emulatedSystems = [ "aarch64-linux" "i686-linux" ];
     supportedFilesystems = [ "zfs" ];
     zfs.forceImportRoot = false;
@@ -108,11 +108,21 @@
 
   environment.systemPackages = with pkgs; [
     zfs
+    zfsnap
     linux-firmware
     zenstates
     amdctl
   ];
 
+  service.ollama = {
+    enable = true;
+    acceleration = "rocm";
+  };
+
+  services.zfs.autoScrub = {
+    enable = true;
+    interval = "monthly";
+  };
   # needed for zfs
   networking.hostId = "137dbeef";
 
