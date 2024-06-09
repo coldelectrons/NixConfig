@@ -127,22 +127,27 @@ in {
         (mkIf (cfgma.buildType == "laptop") {
           wacom.enable = mkDefault config.services.xserver.enable;
         })
+      ];
 
+      services.displayManager = mkMerge [
         ({
-          displayManager = mkIf (cfgde.environment == "kde") (mkMerge [
+          sddm = mkIf (cfgde.environment == "kde") (mkMerge [
             # Make SDDM use Wayland when wanting to run Wayland as the display manager reguardless of which KDE version
             (mkIf (cfgde.displayManager == "wayland") {
-              sddm.wayland.enable = true;
+              wayland.enable = true;
             })
+          ]);
+          defaultSession = (mkMerge [
             # Make the SDDM use Wayland session when on KDE Plasma 5
-            (mkIf
-              (desktopX.plasma5.enable && cfgde.displayManager == "wayland") {
+            (mkIf (desktopX.plasma5.enable && cfgde.displayManager == "wayland") {
                 defaultSession = "plasmawayland";
-              })
+              }
+            )
             # Make SDDM use X11 when on KDE Plasma 6
             (mkIf (desktopW.plasma6.enable && cfgde.displayManager == "x11") {
-              defaultSession = "plasmax11";
-            })
+                defaultSession = "plasmax11";
+              }
+            )
           ]);
         })
       ];

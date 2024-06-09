@@ -15,6 +15,7 @@
       ./network.nix
       ./fonts.nix
       ./security.nix
+      ./substituters.nix
     ] ++ (builtins.attrValues outputs.nixosModules);
 
   # Add special args for home-manager

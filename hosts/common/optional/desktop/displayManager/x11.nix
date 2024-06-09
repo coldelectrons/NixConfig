@@ -13,12 +13,12 @@
         options = "terminate:ctrl_alt_bksp,caps:escaple";
       };
 
-      # Enable touchpad support
-      libinput.enable = true;
 
       # Remove xterm terminal
       excludePackages = with pkgs; [ xterm ];
     };
+    # Enable touchpad support
+    libinput.enable = true;
   };
 
   # Install installation

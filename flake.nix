@@ -6,6 +6,15 @@
     # Core dependencies
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     # nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    lix = {
+      url = "git+https://git.lix.systems/lix-project/lix?ref=refs/tags/2.90-beta.1";
+      flake = false;
+    };
+    lix-module = {
+      url = "git+https://git.lix.systems/lix-project/nixos-module";
+      inputs.lix.follows = "lix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     hardware.url = "github:nixos/nixos-hardware";
     nur.url = "github:nix-community/NUR";
     sops-nix = {
@@ -46,7 +55,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, lix-module, home-manager, ... }@inputs:
     let
       inherit (self) outputs;
       lib = nixpkgs.lib // home-manager.lib;
@@ -91,29 +100,40 @@
       nixosConfigurations = {
         # Main desktop
         hades = lib.nixosSystem {
-          modules = [ ./hosts/hades ];
+          modules = [ 
+            lix-module.nixosModules.default
+            ./hosts/hades
+          ];
           specialArgs = { inherit inputs outputs; };
         };
         # Personal laptop
         stickers = lib.nixosSystem {
-          modules = [ ./hosts/stickers ];
+          modules = [ 
+            lix-module.nixosModules.default
+            ./hosts/stickers
+          ];
           specialArgs = { inherit inputs outputs; };
         };
         # server
         heavy = lib.nixosSystem {
-          modules = [ ./hosts/heavy ];
-          specialArgs = { inherit inputs outputs; };
-        };
-        megamind = lib.nixosSystem {
-          modules = [ ./hosts/megamind ];
+          modules = [ 
+            lix-module.nixosModules.default
+            ./hosts/heavy
+          ];
           specialArgs = { inherit inputs outputs; };
         };
         skinny = lib.nixosSystem {
-          modules = [ ./hosts/skinny ];
+          modules = [ 
+            lix-module.nixosModules.default
+            ./hosts/skinny
+          ];
           specialArgs = { inherit inputs outputs; };
         };
         live-image = lib.nixosSystem {
-          modules = [ ./hosts/live-image ];
+          modules = [ 
+            lix-module.nixosModules.default
+            ./hosts/live-image
+          ];
           specialArgs = { inherit inputs outputs; };
         };
       };
@@ -123,24 +143,28 @@
       homeConfigurations = {
         # desktops
         "coldelectrons@hades" = lib.homeManagerConfiguration {
-          modules = [ ./home/coldelectrons/hades.nix ];
+          modules = [ 
+            lix-module.nixosModules.default
+            ./home/coldelectrons/hades.nix
+          ];
           pkgs = pkgsFor.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
         };
         # laptops
         "coldelectrons@stickers" = lib.homeManagerConfiguration {
-          modules = [ ./home/coldelectrons/stickers.nix ];
+          modules = [ 
+            lix-module.nixosModules.default
+            ./home/coldelectrons/stickers.nix
+          ];
           pkgs = pkgsFor.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
         };
         # servers
         "coldelectrons@heavy" = lib.homeManagerConfiguration {
-          modules = [ ./home/coldelectrons/heavy.nix ];
-          pkgs = pkgsFor.x86_64-linux;
-          extraSpecialArgs = { inherit inputs outputs; };
-        };
-        "coldelectrons@megamind" = lib.homeManagerConfiguration {
-          modules = [ ./home/coldelectrons/heavy.nix ];
+          modules = [ 
+            lix-module.nixosModules.default
+            ./home/coldelectrons/heavy.nix
+          ];
           pkgs = pkgsFor.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
         };

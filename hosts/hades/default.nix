@@ -94,14 +94,22 @@
     # Bootloader
     loader = {
       grub = {
-        enable = false;
+        enable = true;
+        efiSupport = true;
+        device = "nodev";
+        memtest86.enable = true;
       };
       systemd-boot = {
-        enable = true;
+        enable = false;
         memtest86.enable = true;
         consoleMode = "max";
+        graceful = true;
+        configurationLimit = 5;
       };
-      efi.canTouchEfiVariables = true;
+      efi = {
+        canTouchEfiVariables = true;
+        # efiSysMountPoint = "/boot/efi"; # ← use the same mount point here.
+      };
     };
 
     initrd = {
