@@ -3,8 +3,10 @@
   home.packages = with pkgs; [
     lunarvim
     neovide
+    neovim
     zk
     stylua
+    clangd
   ];
 
   home.file = {
