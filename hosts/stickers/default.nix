@@ -22,7 +22,7 @@
 
     ### Service
     ../common/optional/theme.nix
-    ../common/optional/quietboot.nix
+    # ../common/optional/quietboot.nix
     ../common/optional/libvirt.nix
     ../common/optional/syncthing.nix
     ../common/optional/tailscale.nix
@@ -32,7 +32,7 @@
     ../common/optional/appimage.nix
     ../common/optional/localsend.nix
     ../common/optional/gaming.nix
-    ../common/optional/android-studio.nix
+    # ../common/optional/android-studio.nix
     ../common/optional/waydroid.nix
   ];
 

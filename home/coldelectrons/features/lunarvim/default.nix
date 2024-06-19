@@ -6,7 +6,7 @@
     neovim
     zk
     stylua
-    clangd
+    libclang
   ];
 
   home.file = {
