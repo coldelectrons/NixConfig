@@ -37,6 +37,13 @@ lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 -- -- Use which-key to add extra bindings with the leader-key prefix
 lvim.builtin.which_key.mappings["W"] = { "<cmd>noautocmd w<cr>", "Save without formatting" }
 lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
+lvim.builtin.which_key.mappings["S"] = {
+	name = "+Spectre",
+	S = { "<cmd>lua require('spectre').toggle()<CR>",                                     "Toggle Spectre" },
+  w = { "<cmd>lua require('spectre').open_visual({select_word=true})<CR>",         "Search current word" },
+  W = { "<cmd>lua require('spectre').open_visual()<CR>",                           "Search current word" },
+  F = { "<cmd>lua require('spectre').open_file_search({select_word=true})<CR>", "Search on current file" },
+}
 lvim.builtin.which_key.mappings["t"] = {
 	name = "+Trouble",
 	t = { "<cmd>TroubleToggle<cr>", "trouble" },
@@ -102,7 +109,6 @@ lvim.builtin.which_key.mappings["H"] = {
 
 lvim.keys.normal_mode["<A-Up>"] = ":GUIFontSizeUp<cr>"
 lvim.keys.normal_mode["<A-Down>"] = ":GUIFontSizeDown<cr>"
-
 -- -- Change theme settings
 lvim.colorscheme = "tokyodark"
 
@@ -414,6 +420,38 @@ lvim.plugins = {
 	"stevearc/dressing.nvim",
   "ellisonleao/glow.nvim",
   "ktunprasert/gui-font-resize.nvim",
+  {
+      "tris203/precognition.nvim",
+      --event = "VeryLazy",
+      opts = {
+      -- startVisible = true,
+      -- showBlankVirtLine = true,
+      -- highlightColor = { link = "Comment" },
+      -- hints = {
+      --      Caret = { text = "^", prio = 2 },
+      --      Dollar = { text = "$", prio = 1 },
+      --      MatchingPair = { text = "%", prio = 5 },
+      --      Zero = { text = "0", prio = 1 },
+      --      w = { text = "w", prio = 10 },
+      --      b = { text = "b", prio = 9 },
+      --      e = { text = "e", prio = 8 },
+      --      W = { text = "W", prio = 7 },
+      --      B = { text = "B", prio = 6 },
+      --      E = { text = "E", prio = 5 },
+      -- },
+      -- gutterHints = {
+      --     G = { text = "G", prio = 10 },
+      --     gg = { text = "gg", prio = 9 },
+      --     PrevParagraph = { text = "{", prio = 8 },
+      --     NextParagraph = { text = "}", prio = 8 },
+      -- },
+      },
+  },
+  {
+    "m4xshen/hardtime",
+    dependencies = {"MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
+    opts = {}
+  },
 }
 
 require("gui-font-resize").setup({default_size=10,change_by=1,bounds={maximum=20}})

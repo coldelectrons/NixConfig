@@ -1,11 +1,10 @@
-{ config, pkgs, pkgs-stable, ... }:
-let
-in
+{ pkgs, ... }:
 {
   home.packages = with pkgs; [
     lunarvim
     neovide
     zk
+    stylua
   ];
 
   home.file = {
