@@ -447,11 +447,11 @@ lvim.plugins = {
       -- },
       },
   },
-  {
-    "m4xshen/hardtime",
-    dependencies = {"MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
-    opts = {}
-  },
+  -- {
+  --   "m4xshen/hardtime",
+  --   dependencies = {"MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
+  --   opts = {}
+  -- },
 }
 
 require("gui-font-resize").setup({default_size=10,change_by=1,bounds={maximum=20}})
