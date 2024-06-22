@@ -2,8 +2,6 @@
 
 {
   home.packages = with pkgs; [
-    # inputs.freecad-realthunder.packages.${pkgs.system}.default
-    inputs.freecad-realthunder.default
     freecad 
     kicad
     openscad

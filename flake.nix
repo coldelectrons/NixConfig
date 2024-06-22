@@ -49,10 +49,6 @@
       url = "github:NovaViper/Wallpapers";
       flake = false;
     };
-    freecad-realthunder = {
-      url = "github:coldelectrons/freecad-realthunder-git-nix-flake";
-      # inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = { self, nixpkgs, lix-module, home-manager, ... }@inputs:
