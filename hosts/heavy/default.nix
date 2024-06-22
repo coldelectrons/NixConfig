@@ -2,8 +2,8 @@
 {
   imports = [
     ### Device Configs
-    inputs.hardware.nixosModules.common-cpu-amd
-    inputs.hardware.nixosModules.common-gpu-amd
+    # inputs.hardware.nixosModules.common-cpu-amd
+    # inputs.hardware.nixosModules.common-gpu-amd
     inputs.hardware.nixosModules.common-pc-ssd
     # inputs.sops-nix.nixosModules.sops
     ./hardware-configuration.nix
@@ -49,8 +49,6 @@
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-  services.avahi.enable = true;
-  services.avahi.nssmdns = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
