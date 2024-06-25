@@ -2,8 +2,8 @@
 {
   imports = [
     ### Device Configs
-    # inputs.hardware.nixosModules.common-cpu-amd
-    # inputs.hardware.nixosModules.common-gpu-amd
+    inputs.hardware.nixosModules.common-cpu-amd
+    inputs.hardware.nixosModules.common-gpu-amd
     inputs.hardware.nixosModules.common-pc-ssd
     # inputs.sops-nix.nixosModules.sops
     ./hardware-configuration.nix
@@ -23,7 +23,7 @@
 
     ### Service
     # ../common/optional/theme.nix
-    ../common/optional/quietboot.nix
+    # ../common/optional/quietboot.nix
     ../common/optional/libvirt.nix
     ../common/optional/syncthing.nix
     ../common/optional/tailscale.nix

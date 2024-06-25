@@ -2,9 +2,9 @@
 {
   imports = [
     ### Device Configs
-    # inputs.hardware.nixosModules.common-cpu-amd
-    # inputs.hardware.nixosModules.common-gpu-amd
-    # inputs.hardware.nixosModules.common-pc-ssd
+    inputs.hardware.nixosModules.common-cpu-amd
+    inputs.hardware.nixosModules.common-gpu-amd
+    inputs.hardware.nixosModules.common-pc-ssd
     inputs.sops-nix.nixosModules.sops
     ./hardware-configuration.nix
     # ./disks.nix
@@ -23,7 +23,7 @@
 
     ### Service
     ../common/optional/theme.nix
-    ../common/optional/quietboot.nix
+    # ../common/optional/quietboot.nix
     ../common/optional/libvirt.nix
     ../common/optional/syncthing.nix
     ../common/optional/tailscale.nix
@@ -91,7 +91,7 @@
 
   boot = {
     kernelPackages = pkgs.linuxKernel.packages.linux_zen;
-    binfmt.emulatedSystems = [ "aarch64-linux" "i686-linux" ];
+    binfmt.emulatedSystems = [ "aarch64-linux" "i686-linux" "armv7l-linux" "armv6l-linux" "riscv64-linux" ];
     consoleLogLevel = 0;
     # Bootloader
     loader = {
