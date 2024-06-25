@@ -45,8 +45,8 @@
     # Enable OpenGL
     opengl = {
       enable = true;
-      driSupport = true;
-      driSupport32Bit = true;
+      # driSupport = true;
+      # driSupport32Bit = true;
       extraPackages = with pkgs;
         [ libva-utils vaapiVdpau libvdpau-va-gl ]
         ++ lib.optionals (config.variables.machine.gpu == "nvidia")
