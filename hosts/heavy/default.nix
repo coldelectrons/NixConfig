@@ -11,19 +11,9 @@
 
     ### Global Configs
     ../common/global
-    ../common/users/coldelectrons
-
-    ### Hardware
-    # ../common/optional/rgb.nix
-    # ../common/optional/bluetooth.nix
-    # ../common/optional/qmk.nix
-
-    ### Desktop Environment
-    # ../common/optional/desktop/kde/plasma6.nix
+    ../common/users/sandwitch
 
     ### Service
-    # ../common/optional/theme.nix
-    # ../common/optional/quietboot.nix
     ../common/optional/libvirt.nix
     ../common/optional/syncthing.nix
     ../common/optional/tailscale.nix
@@ -35,6 +25,10 @@
     # ../common/optional/localsend.nix
     ./ssh-serve.nix
   ];
+
+  nix.settings.trustedUsers = [ "root" "sandwitch" ];
+  nixpkgs.config.allowUnfree = true;
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   networking.hostName = "heavy"; # Define your hostname.
   networking.networkmanager.enable = true;
@@ -57,16 +51,6 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.05"; # Did you read the comment?
-
-  ### Special Variables
-  variables.useVR = false;
-  variables.useKonsole = false;
-  variables.desktop.displayManager = "wayland";
-  # variables.machine.motherboard = "amd";
-  variables.machine.buildType = "server";
-  variables.machine.gpu = "amd";
-  #variables.machine.lowSpec = false;
-  ###
 
   boot = {
     kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
@@ -141,7 +125,7 @@
   };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  # services.xserver.enable = true;
 
   # Enable the XFCE Desktop Environment.
   #services.xserver.displayManager.lightdm.enable = true;
