@@ -8,6 +8,4 @@
     # ./features/virt-manager
   ];
 
-  nix.settings.trustedUsers = [ "root" "sandwitch" ];
-
 }

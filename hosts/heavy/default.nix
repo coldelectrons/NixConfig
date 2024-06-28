@@ -26,7 +26,7 @@
     ./ssh-serve.nix
   ];
 
-  nix.settings.trustedUsers = [ "root" "sandwitch" ];
+  nix.settings.trusted-users = [ "root" "sandwitch" ];
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
