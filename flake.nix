@@ -40,10 +40,10 @@
       url = "github:pluiedev/krunner-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    wallpapers = {
-      url = "github:NovaViper/Wallpapers";
-      flake = false;
-    };
+    # wallpapers = {
+    #   url = "github:NovaViper/Wallpapers";
+    #   flake = false;
+    # };
   };
 
   outputs = { self, nixpkgs, lix-module, home-manager, ... }@inputs:
@@ -117,6 +117,20 @@
           modules = [ 
             lix-module.nixosModules.default
             ./hosts/skinny
+          ];
+          specialArgs = { inherit inputs outputs; };
+        };
+        # rpi4-image = lib.nixosSystem {
+        #   modules = [ 
+        #     lix-module.nixosModules.default
+        #     ./hosts/rpi4-image
+        #   ];
+        #   specialArgs = { inherit inputs outputs; };
+        # };
+        voronix = lib.nixosSystem {
+          modules = [ 
+            lix-module.nixosModules.default
+            ./hosts/voronix
           ];
           specialArgs = { inherit inputs outputs; };
         };
