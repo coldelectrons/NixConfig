@@ -141,6 +141,7 @@
     amdctl
     deploy-rs
     colmena
+    nixos-anywhere
   ];
   # system.activationScripts =
   #   lib.mkIf (config.services.hardware.openrgb.enable) {

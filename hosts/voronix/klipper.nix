@@ -24,13 +24,14 @@ in
     configFile = ./octopus-printer-rev-c.cfg;
     mutableConfig = true;
     mutableConfigFolder = "/var/lib/klipper/config";
-    firmwares = {
-      voronix-main = on // {
-        # serial = "/dev/serial/by-id/usb-Klipper_stm32f446xx_octopus12345-if00";
-        canbus_uuid = "f7dcdb4b8ba9";
-        configFile = ./octopus_v1.1_usbcan_firmware.cfg;
-      };
-    };
+    # It's unfortunate, but the firmwares module doesn't work with CAN
+    # firmwares = {
+    #   voronix-main = on // {
+    #     # serial = "/dev/serial/by-id/usb-Klipper_stm32f446xx_octopus12345-if00";
+    #     canbus_uuid = "f7dcdb4b8ba9";
+    #     configFile = ./octopus_v1.1_usbcan_firmware.cfg;
+    #   };
+    # };
   };
 
   # services.klippain = on // {
