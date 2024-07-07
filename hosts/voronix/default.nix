@@ -2,12 +2,20 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      inputs.hardware.nixosModules.raspberry-pi-4
+
+      # everything klipper
+      ./klipper.nix
+      ./moonraker.nix
+      ./fluidd.nix
+      ./klippercam.nix
+      ./klipperscreen.nix
     ];
 
   # Use the extlinux boot loader. (NixOS wants to enable GRUB by default)
@@ -78,12 +86,12 @@
       packages = with pkgs; [
       ];
     };
-    klipper = {
-      isNormalUser = true;
-      extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-      packages = with pkgs; [
-      ];
-    };
+    # klipper = {
+    #   isNormalUser = true;
+    #   extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    #   packages = with pkgs; [
+    #   ];
+    # };
   };
 
   nix.settings.trusted-users = [ "root" "nixos" "klipper" ];

@@ -11,7 +11,7 @@ an executable
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
 vim.opt.relativenumber = true
-vim.g.conceallevel = 1;
+vim.g.conceallevel = 1
 
 -- general
 lvim.log.level = "warn"
@@ -39,10 +39,10 @@ lvim.builtin.which_key.mappings["W"] = { "<cmd>noautocmd w<cr>", "Save without f
 lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
 lvim.builtin.which_key.mappings["S"] = {
 	name = "+Spectre",
-	S = { "<cmd>lua require('spectre').toggle()<CR>",                                     "Toggle Spectre" },
-  w = { "<cmd>lua require('spectre').open_visual({select_word=true})<CR>",         "Search current word" },
-  W = { "<cmd>lua require('spectre').open_visual()<CR>",                           "Search current word" },
-  F = { "<cmd>lua require('spectre').open_file_search({select_word=true})<CR>", "Search on current file" },
+	S = { "<cmd>lua require('spectre').toggle()<CR>", "Toggle Spectre" },
+	w = { "<cmd>lua require('spectre').open_visual({select_word=true})<CR>", "Search current word" },
+	W = { "<cmd>lua require('spectre').open_visual()<CR>", "Search current word" },
+	F = { "<cmd>lua require('spectre').open_file_search({select_word=true})<CR>", "Search on current file" },
 }
 lvim.builtin.which_key.mappings["t"] = {
 	name = "+Trouble",
@@ -128,31 +128,31 @@ lvim.builtin.treesitter.ensure_installed = { "comment", "markdown_inline", "rege
 
 -- -- generic LSP settings <https://www.lunarvim.org/docs/languages#lsp-support>
 
-vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "clangd" })
+-- vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "clangd" })
 
-local clangd_flags = {
-	"--fallback-style=LLVM",
-	"--background-index",
-	"-j=12",
-	"--all-scopes-completion",
-	"--pch-storage=disk",
-	"--clang-tidy",
-	"--log=error",
-	"--completion-style=detailed",
-	"--header-insertion=iwyu",
-	"--header-insertion-decorators",
-	"--enable-config",
-	"--offset-encoding=utf-16",
-	"--ranking-model=heuristics",
-	"--folding-ranges",
-}
+-- local clangd_flags = {
+-- 	"--fallback-style=LLVM",
+-- 	"--background-index",
+-- 	"-j=12",
+-- 	"--all-scopes-completion",
+-- 	"--pch-storage=disk",
+-- 	"--clang-tidy",
+-- 	"--log=error",
+-- 	"--completion-style=detailed",
+-- 	"--header-insertion=iwyu",
+-- 	"--header-insertion-decorators",
+-- 	"--enable-config",
+-- 	"--offset-encoding=utf-16",
+-- 	"--ranking-model=heuristics",
+-- 	"--folding-ranges",
+-- }
 
-local clangd_bin = "clangd"
+-- local clangd_bin = "clangd"
 
-local opts = {
-	cmd = { clangd_bin, unpack(clangd_flags) },
-}
-require("lvim.lsp.manager").setup("clangd", opts)
+-- local opts = {
+-- 	cmd = { clangd_bin, unpack(clangd_flags) },
+-- }
+-- require("lvim.lsp.manager").setup("clangd", opts)
 
 -- --- disable automatic installation of servers
 -- lvim.lsp.installer.setup.automatic_installation = false
@@ -202,12 +202,12 @@ linters.setup({
 -- -- Additional Plugins <https://www.lunarvim.org/docs/plugins#user-plugins>
 lvim.plugins = {
 	{ "folke/tokyonight.nvim" },
-  { "tiagovla/tokyodark.nvim" },
-  { "EdenEast/nightfox.nvim" },
+	{ "tiagovla/tokyodark.nvim" },
+	{ "EdenEast/nightfox.nvim" },
 	{ "catppuccin/nvim", lazy = true, name = "catppuccin", priority = 1000 },
 	{
 		"folke/trouble.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
+		dependencies = { "nvim-tree/nvim-web-devicons" },
 	},
 	-- misc little things
 	{ "pbrisbin/vim-mkdir" },
@@ -284,18 +284,17 @@ lvim.plugins = {
 			"nvim-telescope/telescope-media-files.nvim",
 			"renerocksai/calendar-vim",
 			"nvim-telescope/telescope-symbols.nvim",
-      "ekickx/clipboard-image.nvim",
+			"ekickx/clipboard-image.nvim",
 		},
 	},
-  {
-  "zk-org/zk-nvim",
-  config = function()
-    require("zk").setup({
-      picker = "telescope",
-
-    })
-  end
-  },
+	{
+		"zk-org/zk-nvim",
+		config = function()
+			require("zk").setup({
+				picker = "telescope",
+			})
+		end,
+	},
 	{
 		"kevinhwang91/nvim-bqf",
 		event = { "BufRead", "BufNew" },
@@ -418,43 +417,43 @@ lvim.plugins = {
 	},
 	-- "ChristianChiarulli/swenv.nvim",
 	"stevearc/dressing.nvim",
-  "ellisonleao/glow.nvim",
-  "ktunprasert/gui-font-resize.nvim",
-  {
-      "tris203/precognition.nvim",
-      --event = "VeryLazy",
-      opts = {
-      -- startVisible = true,
-      -- showBlankVirtLine = true,
-      -- highlightColor = { link = "Comment" },
-      -- hints = {
-      --      Caret = { text = "^", prio = 2 },
-      --      Dollar = { text = "$", prio = 1 },
-      --      MatchingPair = { text = "%", prio = 5 },
-      --      Zero = { text = "0", prio = 1 },
-      --      w = { text = "w", prio = 10 },
-      --      b = { text = "b", prio = 9 },
-      --      e = { text = "e", prio = 8 },
-      --      W = { text = "W", prio = 7 },
-      --      B = { text = "B", prio = 6 },
-      --      E = { text = "E", prio = 5 },
-      -- },
-      -- gutterHints = {
-      --     G = { text = "G", prio = 10 },
-      --     gg = { text = "gg", prio = 9 },
-      --     PrevParagraph = { text = "{", prio = 8 },
-      --     NextParagraph = { text = "}", prio = 8 },
-      -- },
-      },
-  },
-  -- {
-  --   "m4xshen/hardtime",
-  --   dependencies = {"MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
-  --   opts = {}
-  -- },
+	"ellisonleao/glow.nvim",
+	"ktunprasert/gui-font-resize.nvim",
+	-- {
+	--     "tris203/precognition.nvim",
+	--     --event = "VeryLazy",
+	--     opts = {
+	--     -- startVisible = true,
+	--     -- showBlankVirtLine = true,
+	--     -- highlightColor = { link = "Comment" },
+	--     -- hints = {
+	--     --      Caret = { text = "^", prio = 2 },
+	--     --      Dollar = { text = "$", prio = 1 },
+	--     --      MatchingPair = { text = "%", prio = 5 },
+	--     --      Zero = { text = "0", prio = 1 },
+	--     --      w = { text = "w", prio = 10 },
+	--     --      b = { text = "b", prio = 9 },
+	--     --      e = { text = "e", prio = 8 },
+	--     --      W = { text = "W", prio = 7 },
+	--     --      B = { text = "B", prio = 6 },
+	--     --      E = { text = "E", prio = 5 },
+	--     -- },
+	--     -- gutterHints = {
+	--     --     G = { text = "G", prio = 10 },
+	--     --     gg = { text = "gg", prio = 9 },
+	--     --     PrevParagraph = { text = "{", prio = 8 },
+	--     --     NextParagraph = { text = "}", prio = 8 },
+	--     -- },
+	--     },
+	-- },
+	-- {
+	--   "m4xshen/hardtime",
+	--   dependencies = {"MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
+	--   opts = {}
+	-- },
 }
 
-require("gui-font-resize").setup({default_size=10,change_by=1,bounds={maximum=20}})
+require("gui-font-resize").setup({ default_size = 10, change_by = 1, bounds = { maximum = 20 } })
 
 -- require("llm").setup({
 --   backend = "ollama",
@@ -541,7 +540,6 @@ require("gui-font-resize").setup({default_size=10,change_by=1,bounds={maximum=20
 -- vim.keymap.set("n", "<space>rh", "<cmd>IronHide<cr>")
 
 local opts = { noremap = true, silent = true }
-
 
 local home = vim.fn.expand("~/zk") -- have to manually make the folder
 -- local home = require('plenary.path'):new("~/zettelkasten"):normalize()

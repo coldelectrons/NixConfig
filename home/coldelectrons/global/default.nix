@@ -17,10 +17,10 @@
     stateVersion = lib.mkDefault "24.05";
     sessionPath = [ "$HOME/.local/bin" ];
     sessionVariables = {
-      FLAKE = "${config.home.homeDirectory}/NixConfig";
+      FLAKE = "${config.home.homeDirectory}/Sync/NixConfig";
       #CARGO_HOME = "${config.xdg.dataHome}/cargo";
     };
-    file."./Pictures/Wallpapers".source = inputs.wallpapers;
+    # file."./Pictures/Wallpapers".source = inputs.wallpapers;
   };
 
   # Enable XDG

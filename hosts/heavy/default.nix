@@ -12,6 +12,7 @@
     ### Global Configs
     ../common/global
     ../common/users/sandwitch
+    # ../common/users/coldelectrons
 
     ### Service
     ../common/optional/libvirt.nix
@@ -20,6 +21,7 @@
     ../common/optional/ollama.nix
 
     ### Applications
+    ../common/optional/filemanager.nix
     # ../common/optional/flatpak.nix
     # ../common/optional/appimage.nix
     # ../common/optional/localsend.nix

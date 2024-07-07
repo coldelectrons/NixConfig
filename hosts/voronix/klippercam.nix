@@ -1,8 +1,4 @@
-{ config, pkgs, prelude, ... }@args:
-let
-  on = { enable = true; };
-in
-
+{ pkgs, ... }:
 {
 
   systemd.services.klippercam = {

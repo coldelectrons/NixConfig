@@ -18,6 +18,7 @@
     ./ssh.nix
     ./tmux.nix
     ./starship.nix
+    ./yazi.nix
     # ./zsh.nix
   ];
 

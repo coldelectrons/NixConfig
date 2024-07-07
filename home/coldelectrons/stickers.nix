@@ -8,7 +8,7 @@
     # ./features/games
     ./features/cli
     ./features/lunarvim
-    # ./features/productivity
+    ./features/productivity
     # ./features/virt-manager
   ];
 

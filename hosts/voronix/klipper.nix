@@ -1,4 +1,4 @@
-{ config, pkgs, prelude, ... }@args:
+{ config, pkgs,... }:
 let
   on = { enable = true; };
 in
@@ -6,14 +6,6 @@ in
 # Klipper and stuff around it.
 
 {
-  imports = [ 
-    ./klipperscreen.nix
-    ./moonraker.nix
-    ./fluidd.nix
-    ./klippercam.nix
-    ./klippain.nix
-  ];
-
   users.users.klipper = {
     isSystemUser = true;
     group = "klipper";
@@ -34,19 +26,20 @@ in
     mutableConfigFolder = "/home/klipper/printer_data/config";
     firmwares = {
       voronix-main = on // {
-        serial = "/dev/serial/by-id/usb-Klipper_stm32f446xx_octopus12345-if00";
+        # serial = "/dev/serial/by-id/usb-Klipper_stm32f446xx_octopus12345-if00";
+        canbus_uuid = "f7dcdb4b8ba9";
         configFile = ./octopus_v1.1_usbcan_firmware.cfg;
       };
     };
   };
 
-  services.klippain = on // {
-    mutableConfigFolder = services.klipper.mutableConfigFolder;
-    mainMcuTemplate = "octopus_v1.1";
-    toolheadTemplate = "";
-    mmuTemplate = "";
-    
-  };
+  # services.klippain = on // {
+  #   mutableConfigFolder = services.klipper.mutableConfigFolder;
+  #   mainMcuTemplate = "octopus_v1.1";
+  #   toolheadTemplate = "";
+  #   mmuTemplate = "";
+  #   
+  # };
 
   # environment.systemPackages = [
   #   klippain = pkgs.callPackage ./klippain.nix;

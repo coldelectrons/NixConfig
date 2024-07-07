@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ config, lib, pkgs, ... }: {
   programs.yazi = {
     enable = true;
     enableBashIntegration = lib.mkIf config.programs.bash.enable true;
