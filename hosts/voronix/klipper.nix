@@ -21,9 +21,9 @@ in
   services.klipper = on // {
     user = "klipper";
     group = "klipper";
-    configFile = ./printer.cfg;
+    configFile = ./octopus-printer-rev-c.cfg;
     mutableConfig = true;
-    mutableConfigFolder = "/home/klipper/printer_data/config";
+    mutableConfigFolder = "/var/lib/klipper/config";
     firmwares = {
       voronix-main = on // {
         # serial = "/dev/serial/by-id/usb-Klipper_stm32f446xx_octopus12345-if00";

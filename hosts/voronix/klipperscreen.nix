@@ -18,7 +18,7 @@
     script = ''
       export DISPLAY=:0
       echo Starting at $DISPLAY
-      KlipperScreen -c ${conf}
+      KlipperScreen
     '';
     enable = true;
     after = [ "moonraker.service" ];
