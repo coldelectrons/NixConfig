@@ -30,6 +30,7 @@
     ../common/optional/ollama.nix
 
     ### Applications
+    ../common/optional/cli-extras.nix
     ../common/optional/mpd.nix
     ../common/optional/filemanager.nix
     ../common/optional/flatpak.nix

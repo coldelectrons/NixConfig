@@ -22,6 +22,7 @@
 
     ### Applications
     ../common/optional/filemanager.nix
+    ../common/optional/cli-extras.nix
     # ../common/optional/flatpak.nix
     # ../common/optional/appimage.nix
     # ../common/optional/localsend.nix

@@ -79,20 +79,11 @@
     usbutils
     killall
     git
-    git-crypt
     sops age
-    smartmontools
-    openssl
-    aha
     htop
     bottom
-    # terminal file managers, because while I like mc
-    # it doesn't seem to work right with fish or zsh
-    mc
-    lf
-    walk
-    fm-go
-    superfile
-    joshuto
+    curl
+    wget
+    openssl
   ];
 }
