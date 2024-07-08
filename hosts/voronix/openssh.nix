@@ -4,9 +4,9 @@
   services.openssh = {
     enable = true;
     settings = {
-      permitRootLogin = "yes";
-      passwordAuthentication = false;
-      KdbInteractiveAuthentication = false;
+      PermitRootLogin = "yes";
+      PasswordAuthentication = false;
+      KbdInteractiveAuthentication = false;
     };
     extraConfig = ''
       # Password based logins are disabled - only public key based logins are allowed.
