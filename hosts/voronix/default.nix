@@ -20,6 +20,9 @@
       ./klipperscreen.nix
     ];
 
+  nixpkgs.buildPlatform.system = "x86_64-linux";
+  nixpkgs.hostPlatform.system = "aarch64-linux";
+
   # Use the extlinux boot loader. (NixOS wants to enable GRUB by default)
   boot.loader.grub.enable = false;
   # Enables the generation of /boot/extlinux/extlinux.conf
@@ -29,6 +32,38 @@
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+
+# ip link set can0 type can bitrate 1000000
+# ip link set can0 txqueuelen 256
+  services.udev.extraRules = ''
+    SUBSYSTEM=="net", ACTION=="add|change", KERNEL=="can*", ATTR{tx_queue_len}="1000"
+  '';
+
+  services.resolved.enable = false;
+
+  systemd.network = {
+    enable = true;
+    wait-online.enable = false;
+    networks."80-can" = {
+      matchConfig.Name = "can0";
+      linkConfig.RequiredForOnline = "no";
+      extraConfig = ''
+        [CAN]
+        BitRate=1M
+        RestartSec=100ms
+      '';
+    };
+  };
+  services.avahi = {
+    enable = true;
+    publish = {
+      enable = true;
+      # addresses = true;
+      # workstation = true;
+      domain = true;
+      userServices = true;
+    };
+  };
 
   # Set your time zone.
   time.timeZone = "America/New_York";
@@ -108,6 +143,9 @@
     curl
     tree
     lunarvim
+    can-utils
+    usbutils
+
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
