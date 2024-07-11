@@ -15,9 +15,11 @@
   };
   users.users."root".openssh.authorizedKeys.keys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILNLc53xO8V/nzz1ebEGRplW0AeWhTUcYB1ZuWlRYDV1"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGdUmiSOmO2Tn51gSsQs3h6YDIwqiWvMXtdArVpIbn9M"
   ];
   users.users."nixos".openssh.authorizedKeys.keys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILNLc53xO8V/nzz1ebEGRplW0AeWhTUcYB1ZuWlRYDV1"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGdUmiSOmO2Tn51gSsQs3h6YDIwqiWvMXtdArVpIbn9M"
   ];
 
 }
