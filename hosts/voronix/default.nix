@@ -20,8 +20,8 @@
       ./klipperscreen.nix
     ];
 
-  nixpkgs.buildPlatform.system = "x86_64-linux";
-  nixpkgs.hostPlatform.system = "aarch64-linux";
+  # nixpkgs.buildPlatform.system = "x86_64-linux";
+  # nixpkgs.hostPlatform.system = "aarch64-linux";
 
   # Use the extlinux boot loader. (NixOS wants to enable GRUB by default)
   boot.loader.grub.enable = false;
