@@ -2,7 +2,7 @@
 
 {
   # Enable ALSA sound
-  sound.enable = true;
+  # sound.enable = true;
 
   # Disable PulseAudio
   hardware.pulseaudio.enable = lib.mkForce false;
