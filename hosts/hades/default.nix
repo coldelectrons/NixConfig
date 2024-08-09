@@ -143,6 +143,7 @@
     deploy-rs
     colmena
     nixos-anywhere
+    vlc
   ];
   # system.activationScripts =
   #   lib.mkIf (config.services.hardware.openrgb.enable) {

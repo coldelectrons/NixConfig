@@ -2,8 +2,8 @@
 
 {
   home.packages = with pkgs; [
-    freecad 
-    kicad
-    openscad
+    # freecad 
+    # kicad
+    # openscad
   ];
 }

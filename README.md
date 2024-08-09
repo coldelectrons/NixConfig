@@ -9,6 +9,7 @@ Here's my NixOS/home-manager config files. Requires [Nix flakes](https://nixos.w
 Looking for something simpler to start out with flakes? Try [this guy's config repo](https://github.com/Misterio77/nix-starter-config).
 
 ## Table of Contents
+- [Caveats](#caveats)
 - [Highlights](#highlights)
 - [References](#references)
 - [Structure](#structure)
@@ -16,14 +17,31 @@ Looking for something simpler to start out with flakes? Try [this guy's config r
 - [How to bootstrap](#how-to-bootstrap)
 - [Secrets](#secrets)
 
+## Caveats
+Nix Flakes are pretty neat, so far.
+However, humans gonna human, so this utopia of 'opinionated config' or whatnot can fall apart - or be
+inconvienced for an unspecified duration - by someone merging something they shouldna done.[^1]
+
+So, this is not a _good_ Nix flake config. If it was, I'd have:
+* My core OS as a stable version
+* My work apps individually flaked/versioned to known good working states
+* `direnvs` for each such work app, so I handle some things myself if need be
+* use an empheral setup, so cruft can't sneak in
+
+Another problem is the problem of secrets. Because it's all, y'know, _secret_ stuff, you
+can't use it. You either have to just take notes from this setup, or go through the whole thing
+and re-plumb all the secrets to get it build, just to figure out if it's something you want to use.
+
 ## Highlights
 - Multiple **NixOS configurations**, including **desktop**, **laptop**, **server**
 - Fully **declarative** **self-hosted** stuff
 - Deployment **secrets** using **sops-nix**
 - **Mesh networked** hosts with **tailscale** and **headscale**
-- Flexible **Home Manager** Configs through **feature flags**
-- Extensively configured wayland environments (**sway** and **hyprland**) and editor (**neovim**)
-- **Declarative** **themes** and **wallpapers** with **nix-colors**
+- Flexible **Home Manager** Configs through **feature flags**[^2]
+- ~Extensively configured wayland environments (**sway** and **hyprland**) and editor (**neovim**)~
+  Nope. Plain Plasma6 Desktop for me, thanks.
+- ~**Declarative** **themes** and **wallpapers** with **nix-colors**~
+  Nope. I don't care about ricing or tricked out stuff. Except Lunarvim.
 - **Hydra CI/CD server and binary cache** that uses the **desktops as remote builders**
 
 ## References
@@ -98,3 +116,10 @@ On my desktop and laptop, I use `pass` for managing passwords, which are
 encrypted using (you bet) my PGP key. This same key is also used for mail
 signing, as well as for SSH'ing around.
 
+[^1]: A teenager once tried to glibly summarize human events:
+    * Spirits ran high
+    * Mistakes were made
+    * People were hurt or died
+    * Blame was laid
+    * Repeat
+[^2]: I find I sorta don't care for home-manager, because it's a an extra step, the errors are harder to figure out, and it doesn't give you an easy way to roll back a generation.

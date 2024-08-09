@@ -10,27 +10,27 @@
 
   
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/fab2cd90-ace6-4416-8230-a82133c12b24";
+    { device = "/dev/disk/by-label/nixos";
       fsType = "ext4";
     };
 
-#  fileSystems."/home" =
-#    { device = "/dev/disk/by-uuid/e715cd77-b48c-4c87-b0b5-729ed91d7b5d";
-#      fsType = "ext4";
-#    };
+ fileSystems."/home/coldelectrons" =
+   { device = "/dev/disk/by-label/coldelectrons";
+     fsType = "ext4";
+   };
 
   fileSystems."/home/coldelectrons/.local/share/Steam" =
-    { device = "/dev/disk/by-uuid/7407920b-3535-49d5-b9ed-f73b442ec36d";
+    { device = "/dev/disk/by-label/Steam";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/42C6-735D";
+    { device = "/dev/disk/by-label/boot";
       fsType = "vfat";
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/ffb544fe-103f-403c-983c-21301a10cfdb"; }
+    [ { device = "/dev/disk/by-label/swap"; }
     ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

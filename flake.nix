@@ -4,8 +4,8 @@
 
   inputs = {
     # Core dependencies
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    # nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     lix-module = {
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.90.0-rc1.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -22,10 +22,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # Extras
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # nixvim = {
+    #   url = "github:nix-community/nixvim";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     nix-gaming = {
       # kept here for the improved Wine variants
       url = "github:fufexan/nix-gaming";
@@ -135,6 +135,20 @@
           ];
           specialArgs = { inherit inputs outputs; };
         };
+        # leftarm = lib.nixosSystem {
+        #   modules = [ 
+        #     lix-module.nixosModules.default
+        #     ./hosts/leftarm
+        #   ];
+        #   specialArgs = { inherit inputs outputs; };
+        # };
+        # rightarm = lib.nixosSystem {
+        #   modules = [ 
+        #     lix-module.nixosModules.default
+        #     ./hosts/rightarm
+        #   ];
+        #   specialArgs = { inherit inputs outputs; };
+        # };
         live-image = lib.nixosSystem {
           modules = [ 
             lix-module.nixosModules.default

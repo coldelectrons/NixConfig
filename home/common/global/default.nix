@@ -4,7 +4,7 @@ with lib; {
   imports = with inputs;
     [
       plasma-manager.homeManagerModules.plasma-manager
-      nixvim.homeManagerModules.nixvim
+      # nixvim.homeManagerModules.nixvim
     ] ++ (builtins.attrValues outputs.homeManagerModules);
 
   nixpkgs = {

@@ -2,11 +2,11 @@
 
 {
   imports = [ 
-    ./prusa-slicer.nix
+    # ./prusa-slicer.nix
     # ./obs.nix
     # ./eclipse.nix
-    ./mpv.nix
-    ./cadcam.nix
+    # ./mpv.nix
+    # ./cadcam.nix
   ];
 
   home = {
