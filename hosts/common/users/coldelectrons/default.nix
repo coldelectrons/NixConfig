@@ -14,10 +14,10 @@ in {
     extraGroups = [ 
       "networkmanager"
       "wheel"
-      ] ++ ifTheyExist [
       "input"
       "plugdev"
       "dialout"
+      ] ++ ifTheyExist [
       "video"
       "audio"
       "docker"

@@ -144,6 +144,11 @@
     colmena
     nixos-anywhere
     vlc
+    mpv
+    mpvScripts.modernx
+    mpvScripts.mpris
+    mpvScripts.thumbnail
+    mpvScripts.mpv-cheatsheet
   ];
   # system.activationScripts =
   #   lib.mkIf (config.services.hardware.openrgb.enable) {
