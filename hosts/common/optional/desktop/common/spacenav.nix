@@ -61,4 +61,17 @@
     KERNEL=="event[0-9]*", ATTRS{idVendor}=="256f", ATTRS{idProduct}=="c640", MODE="0666", GROUP="input"
     KERNEL=="event[0-9]*", ATTRS{idVendor}=="256f", ATTRS{idProduct}=="c652", MODE="0666", GROUP="input"
   '';
+
+  # Appimages (at least FreeCAD) look for a daemon socket at /run/spnav.sock
+  # but IIRC both debian and nixos create the socket at /run/user/1000/spnav.sock
+  # when the daemon is run as the user - which meant that Appimages couldn't find it
+  systemd.tmpfiles.settings = {
+    "10-spacenav-sock-link" = {
+      "/run/spnav.sock" = {
+        L = {
+          argument = "/run/user/1000/spnav.sock";
+        };
+      };
+    };
+  };
 }
