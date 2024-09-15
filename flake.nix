@@ -44,6 +44,17 @@
     #   url = "github:NovaViper/Wallpapers";
     #   flake = false;
     # };
+    
+    # because protontricks magic number problem
+    # https://github.com/Matoking/protontricks/issues/304
+    protontricks = {
+      url = "github:Matoking/protontricks/appinfo_v29";  
+      flake = false;
+    };
+    vdf-patch = {
+      url = "github:Matoking/vdf/support_new_bvdf";
+      flake = false;
+    };
   };
 
   outputs = { self, nixpkgs, lix-module, home-manager, ... }@inputs:
@@ -57,7 +68,9 @@
       pkgsFor = lib.genAttrs systems (system:
         import nixpkgs {
           inherit system;
-          overlays = [ inputs.nur.overlay ];
+          overlays = [
+            inputs.nur.overlay
+          ];
           config = {
             allowUnfree = true;
             allowUnfreePredicate = (_: true);

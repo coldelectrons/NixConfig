@@ -5,6 +5,7 @@
     steam = {
       enable = true;
       remotePlay.openFirewall = true;
+      # protontricks.enable = true;
     };
     gamemode = {
       enable = true;
@@ -63,12 +64,20 @@
     sessionVariables.__GL_THREADED_OPTIMIZATIONS =
       lib.mkIf (config.variables.machine.gpu == "nvidia") "0";
     systemPackages = with pkgs;
-      [ libcanberra protonup-qt ] ++ lib.optionals (config.variables.useVR) [
+      [ libcanberra ] ++ lib.optionals (config.variables.useVR) [
         android-tools
         android-udev-rules
         sidequest
         BeatSaberModManager
         helvum
+        # protontricks #TODO
+        protontricks-beta
+        protonup-ng
+        protonup-qt
+        winetricks
+        gnome.zenity
+        yad
+        p7zip
       ];
   };
 

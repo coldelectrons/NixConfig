@@ -2,9 +2,6 @@
 
 {
   home.packages = with pkgs; [
-    protontricks
-    protonup-ng
-    protonup-qt
     keyutils
     goverlay
     ludusavi
