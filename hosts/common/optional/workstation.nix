@@ -22,7 +22,10 @@
       [
         webkitgtk_4_1 # for use with Prusaslicer appimage
         freecad
-        prusaslicer
+        prusa-slicer
+        orca-slicer
+        super-slicer-latest
+        super-slicer-beta
       ];
   };
 }
