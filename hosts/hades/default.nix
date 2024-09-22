@@ -27,7 +27,7 @@
     ../common/optional/libvirt.nix
     ../common/optional/syncthing.nix
     ../common/optional/tailscale.nix
-    ../common/optional/ollama.nix
+    # ../common/optional/ollama.nix
 
     ### Applications
     ../common/optional/cli-extras.nix
@@ -37,8 +37,8 @@
     ../common/optional/appimage.nix
     ../common/optional/localsend.nix
     ../common/optional/gaming.nix
-    ../common/optional/android-studio.nix
-    ../common/optional/waydroid.nix
+    # ../common/optional/android-studio.nix
+    # ../common/optional/waydroid.nix
     #../common/optional/sunshine-client.nix
   ];
 
