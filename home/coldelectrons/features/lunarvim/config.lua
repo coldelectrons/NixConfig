@@ -541,7 +541,7 @@ require("gui-font-resize").setup({ default_size = 10, change_by = 1, bounds = { 
 
 local opts = { noremap = true, silent = true }
 
-local home = vim.fn.expand("~/zk") -- have to manually make the folder
+local home = vim.fn.expand("~/Sync/zk") -- have to manually make the folder
 -- local home = require('plenary.path'):new("~/zettelkasten"):normalize()
 -- local home = '/home/thomas/zettelkasten'
 require("telekasten").setup({

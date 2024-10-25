@@ -20,12 +20,15 @@
   environment = {
     systemPackages = with pkgs;
       [
-        webkitgtk_4_1 # for use with Prusaslicer appimage
+        # webkitgtk_4_1 # for use with Prusaslicer appimage
         freecad
+        # freecad-next
+        # freecad-git
+        # inputs.nixpkgs-unstable.freecad
         prusa-slicer
         orca-slicer
-        super-slicer-latest
-        super-slicer-beta
+        # super-slicer-latest
+        # super-slicer-beta
       ];
   };
 }

@@ -71,7 +71,7 @@
         BeatSaberModManager
         helvum
         # protontricks #TODO
-        protontricks-beta
+        protontricks
         protonup-ng
         protonup-qt
         winetricks

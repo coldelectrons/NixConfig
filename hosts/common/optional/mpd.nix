@@ -12,7 +12,7 @@
         ashuffle
         mus
         mpc-cli
-        cantata
+        # cantata
         pms
         ario
         ncmpcpp
